@@ -1,0 +1,5 @@
+# Requirements for documentation validation
+
+doc8                      # reStructuredText style checker
+readme_renderer           # Validates README.rst for usage on PyPI
+Sphinx                    # Documentation builder
