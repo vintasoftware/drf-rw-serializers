@@ -14,7 +14,7 @@ class UpdateModelMixin(mixins.UpdateModelMixin):
         self.perform_update(write_serializer)
 
         read_serializer = self.get_read_serializer(instance)
-        
+
         return Response(read_serializer.data)
 
 
@@ -26,5 +26,27 @@ class CreateModelMixin(mixins.CreateModelMixin):
         instance = self.perform_create(write_serializer)
 
         read_serializer = self.get_read_serializer(instance)
-        
+
         return Response(read_serializer.data)
+
+
+class ListModelMixin(mixins.ListModelMixin):
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_read_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+class RetrieveModelMixin(mixins.RetrieveModelMixin):
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_read_serializer(instance)
+        return Response(serializer.data)
