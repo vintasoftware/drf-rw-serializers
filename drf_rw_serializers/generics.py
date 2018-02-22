@@ -2,7 +2,7 @@
 
 from rest_framework import generics
 
-from .mixins import CreateModelMixin, UpdateModelMixin
+from .mixins import CreateModelMixin, UpdateModelMixin, ListModelMixin, RetrieveModelMixin
 
 
 class GenericAPIView(generics.GenericAPIView):
@@ -59,15 +59,29 @@ class UpdateAPIView(UpdateModelMixin, GenericAPIView, generics.UpdateAPIView):
     pass
 
 
-class ListCreateAPIView(CreateModelMixin, GenericAPIView, generics.ListCreateAPIView):
+class ListAPIView(ListModelMixin, GenericAPIView, generics.ListAPIView):
+    pass
+
+
+class RetrieveAPIView(
+        RetrieveModelMixin, GenericAPIView, generics.RetrieveAPIView):
+    pass
+
+
+class ListCreateAPIView(CreateModelMixin, ListModelMixin, GenericAPIView, generics.ListCreateAPIView):
+    pass
+
+
+class RetrieveDestroyAPIView(
+        RetrieveModelMixin, GenericAPIView, generics.RetrieveDestroyAPIView):
     pass
 
 
 class RetrieveUpdateAPIView(
-        UpdateModelMixin, GenericAPIView, generics.RetrieveUpdateAPIView):
+        UpdateModelMixin, RetrieveModelMixin, GenericAPIView, generics.RetrieveUpdateAPIView):
     pass
 
 
 class RetrieveUpdateDestroyAPIView(
-        UpdateModelMixin, GenericAPIView, generics.RetrieveUpdateDestroyAPIView):
+        UpdateModelMixin, RetrieveModelMixin, GenericAPIView, generics.RetrieveUpdateDestroyAPIView):
     pass
