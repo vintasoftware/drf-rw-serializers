@@ -1,7 +1,5 @@
 **Description:** Describe in a couple of sentence what this PR adds
 
-**JIRA:** Link to JIRA ticket
-
 **Dependencies:** dependencies on other outstanding PRs, issues, etc. 
 
 **Merge deadline:** List merge deadline (if any)
@@ -17,7 +15,7 @@ instructions.
 4. If D happend instead - check failed.
 
 **Reviewers:**
-- [ ] tag reviwer 
+- [ ] tag reviewer 
 - [ ] tag reviewer 
 
 **Merge checklist:**

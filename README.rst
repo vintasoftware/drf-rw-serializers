@@ -6,7 +6,7 @@ Django REST Framework Read & Write Serializers
 
 Generic views, viewsets and mixins that extend the Django REST Framework ones adding separated serializers for read and write operations
 
-Read more about which problems we resolve with this app on `Djanfo REST Framework Read & Write Serializers <blog.vinta.com.br/read-and-write-serializers>`_.
+Read more about which problems we resolve with this app on `Djanfo REST Framework Read & Write Serializers <https://blog.vinta.com.br/read-and-write-serializers>`_.
 
 Documentation
 -------------
