@@ -75,3 +75,6 @@ tests/__init__.py
 
 # Visual Studio Code config files
 .vscode
+
+# pytest
+lastfailed
