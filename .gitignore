@@ -77,4 +77,4 @@ tests/__init__.py
 .vscode
 
 # pytest
-lastfailed
+pytest_cache/
