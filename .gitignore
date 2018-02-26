@@ -77,4 +77,4 @@ tests/__init__.py
 .vscode
 
 # pytest
-pytest_cache/
+.pytest_cache/
