@@ -79,3 +79,11 @@ validate: quality test ## run tests and quality checks
 
 selfcheck: ## check that the Makefile is well-formed
 	@echo "The Makefile is well-formed."
+
+release: clean ## package and upload a release
+	python setup.py sdist upload
+	python setup.py bdist_wheel upload
+
+sdist: clean ## package
+	python setup.py sdist
+	ls -l dist
