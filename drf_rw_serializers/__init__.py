@@ -1,9 +1,12 @@
 """
-Generic views, viewsets and mixins that extend the Django REST Framework ones adding separated serializers for read and write operations.
+Generic views, viewsets and mixins that extend the Django REST Framework ones adding
+separated serializers for read and write operations.
 """
 
 from __future__ import absolute_import, unicode_literals
 
 __version__ = '0.1.0'
 
-default_app_config = 'drf_rw_serializers.apps.DrfRwSerializersConfig'  # pylint: disable=invalid-name
+# pylint: disable=invalid-name
+default_app_config = 'drf_rw_serializers.apps.DrfRwSerializersConfig'
+# pylint: enable=invalid-name

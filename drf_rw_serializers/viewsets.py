@@ -11,11 +11,11 @@ class GenericViewSet(GenericAPIView, viewsets.GenericViewSet):
 
 
 class ModelViewSet(
-        CreateModelMixin, UpdateModelMixin, ListModelMixin, RetrieveModelMixin, 
-        GenericAPIView, viewsets.ModelViewSet):
+        CreateModelMixin, UpdateModelMixin, ListModelMixin, RetrieveModelMixin,
+        viewsets.ModelViewSet, GenericAPIView):
     pass
 
 
 class ReadOnlyModelViewSet(
-        ListModelMixin, RetrieveModelMixin, GenericAPIView, viewsets.ReadOnlyModelViewSet):
+        ListModelMixin, RetrieveModelMixin, viewsets.ReadOnlyModelViewSet, GenericAPIView):
     pass

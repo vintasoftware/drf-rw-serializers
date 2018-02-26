@@ -8,11 +8,16 @@ class Order(models.Model):
 
     @property
     def total_price(self):
-        orderedself.ordered_meals.all()
+        return sum([
+            o.meal.price * o.quantity
+            for o in self.ordered_meals.select_related('meal').all()
+        ])
+
 
 class OrderedMeal(models.Model):
-    order = models.ForeignKey('Order', related_name="ordered_meals")
-    meal = models.ForeignKey('Meal')
+    order = models.ForeignKey(
+        'Order', related_name="ordered_meals", on_delete=models.CASCADE)
+    meal = models.ForeignKey('Meal', on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
 
 

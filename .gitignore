@@ -71,4 +71,7 @@ requirements/private.txt
 tests/__init__.py
 
 # Development task artifacts
-default.db
+*.db
+
+# Visual Studio Code config files
+.vscode

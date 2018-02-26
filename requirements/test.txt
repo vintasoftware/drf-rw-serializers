@@ -6,9 +6,11 @@
 #
 attrs==17.4.0             # via pytest
 coverage==4.5.1           # via pytest-cov
+djangorestframework==3.7.7
+model-mommy==1.5.1
 pluggy==0.6.0             # via pytest
 py==1.5.2                 # via pytest
 pytest-cov==2.5.1
 pytest==3.4.1             # via pytest-cov, pytest-django
 pytz==2018.3              # via django
-six==1.11.0               # via pytest, six
+six==1.11.0               # via model-mommy, pytest, six

@@ -1,6 +1,8 @@
 # Requirements for code quality checks
 
-caniusepython3            # Additional Python 3 compatibility pylint checks
 isort                     # to standardize order of imports
-pycodestyle               # PEP 8 compliance validation
-pydocstyle                # PEP 257 compliance validation
+astroid
+pylint                    # linter for python
+bandit
+safety
+-e git+https://github.com/vintasoftware/prospector.git@f81e29009d3e33f170885c31a65d5be9434730f8#egg=prospector

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from rest_framework import mixins
+from rest_framework import mixins, status
+from rest_framework.response import Response
 
 
 class UpdateModelMixin(mixins.UpdateModelMixin):
@@ -13,6 +14,13 @@ class UpdateModelMixin(mixins.UpdateModelMixin):
         write_serializer.is_valid(raise_exception=True)
         self.perform_update(write_serializer)
 
+        # pylint: disable=protected-access
+        if getattr(instance, '_prefetched_objects_cache', None):
+
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+        # pylint: enable=protected-access
         read_serializer = self.get_read_serializer(instance)
 
         return Response(read_serializer.data)
@@ -23,11 +31,12 @@ class CreateModelMixin(mixins.CreateModelMixin):
     def create(self, request, *args, **kwargs):
         write_serializer = self.get_write_serializer(data=request.data)
         write_serializer.is_valid(raise_exception=True)
-        instance = self.perform_create(write_serializer)
+        self.perform_create(write_serializer)
 
-        read_serializer = self.get_read_serializer(instance)
+        read_serializer = self.get_read_serializer(write_serializer.instance)
+        headers = self.get_success_headers(write_serializer.data)
 
-        return Response(read_serializer.data)
+        return Response(read_serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 class ListModelMixin(mixins.ListModelMixin):
@@ -40,7 +49,7 @@ class ListModelMixin(mixins.ListModelMixin):
             serializer = self.get_read_serializer(page, many=True)
             return self.get_paginated_response(serializer.data)
 
-        serializer = self.get_serializer(queryset, many=True)
+        serializer = self.get_read_serializer(queryset, many=True)
         return Response(serializer.data)
 
 
