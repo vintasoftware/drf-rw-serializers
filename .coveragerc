@@ -6,5 +6,6 @@ omit =
     test_settings
     *migrations*
     *admin.py
+    *apps.py
     *static*
     *templates*

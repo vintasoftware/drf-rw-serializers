@@ -8,11 +8,6 @@ from django.conf import settings
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'test_settings')
 
 
-@pytest.fixture(autouse=True)
-def enable_db_access_for_all_tests(transactional_db):  # pylint: disable=unused-argument
-    pass
-
-
 # `pytest` automatically calls this function once when tests are run.
 def pytest_configure():
     settings.DEBUG = False
@@ -24,3 +19,8 @@ def pytest_configure():
     django.setup()
     # Note: In Django =< 1.6 you'll need to run this instead
     # settings.configure()
+
+
+@pytest.fixture(autouse=True)
+def enable_db_access_for_all_tests(db):  # pylint: disable=unused-argument
+    pass
