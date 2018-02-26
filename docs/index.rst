@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to Django REST Framework Read & Write Serializers's documentation!
-=================================================================
+==========================================================================
 
 Contents:
 
