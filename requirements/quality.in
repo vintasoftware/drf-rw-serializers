@@ -5,4 +5,4 @@ astroid
 pylint                    # linter for python
 bandit
 safety
--e git+https://github.com/vintasoftware/prospector.git@f81e29009d3e33f170885c31a65d5be9434730f8#egg=prospector
+prospector
