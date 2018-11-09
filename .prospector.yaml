@@ -33,6 +33,7 @@ pylint:
     - invalid-name
     - no-self-use
     - no-member
+    - useless-object-inheritance
   options:
     max-line-length: 100
     max-parents: 20

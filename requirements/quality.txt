@@ -24,7 +24,9 @@ prospector==1.1.4
 pycodestyle==2.3.1        # via prospector
 pydocstyle==3.0.0         # via prospector
 pyflakes==1.6.0           # via prospector
-pylint-plugin-utils==0.4  # via prospector
+pylint-celery==0.3
+pylint-django==2.0.2
+pylint-plugin-utils==0.4  # via prospector, pylint-celery, pylint-django
 pylint==2.1.1
 pyparsing==2.3.0          # via packaging
 pyyaml==3.13              # via bandit, dparse, prospector

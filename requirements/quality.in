@@ -3,6 +3,8 @@
 isort                     # to standardize order of imports
 astroid
 pylint                    # linter for python
+pylint_django             # pylint plugin for django
+pylint_celery             # pylint plugin for celery
 bandit
 safety
 prospector
