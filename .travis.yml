@@ -16,7 +16,6 @@ matrix:
   exclude:
     - python: 2.7
       env: TOXENV=django20
-  exclude:
     - python: 2.7
       env: TOXENV=django21
   include:
