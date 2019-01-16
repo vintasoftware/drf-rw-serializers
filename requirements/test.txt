@@ -6,14 +6,14 @@
 #
 atomicwrites==1.2.1       # via pytest
 attrs==18.2.0             # via pytest
-coverage==4.5.1           # via pytest-cov
+coverage==4.5.2           # via pytest-cov
 djangorestframework==3.9.0
 model-mommy==1.6.0
-more-itertools==4.3.0     # via pytest
-pluggy==0.8.0             # via pytest
+more-itertools==5.0.0     # via pytest
+pluggy==0.8.1             # via pytest
 py==1.7.0                 # via pytest
-pytest-cov==2.6.0
-pytest-django==3.4.3
-pytest==3.10.0            # via pytest-cov, pytest-django
-pytz==2018.7              # via django
-six==1.11.0               # via model-mommy, more-itertools, pytest
+pytest-cov==2.6.1
+pytest-django==3.4.5
+pytest==4.1.1             # via pytest-cov, pytest-django
+pytz==2018.9              # via django
+six==1.12.0               # via model-mommy, more-itertools, pytest
