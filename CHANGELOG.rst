@@ -16,6 +16,15 @@ Unreleased
 
 *
 
+[1.0.0] - 2019-01-16
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Added
+_____
+
+* Fixed bug in retrieval of success headers in create endpoints (breaking change)
+* Updated dependencies
+
 [0.1.1] - 2018-11-12
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
