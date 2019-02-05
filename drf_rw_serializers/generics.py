@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from rest_framework import generics
+from rest_framework.mixins import DestroyModelMixin
 
 from .mixins import CreateModelMixin, UpdateModelMixin, ListModelMixin, RetrieveModelMixin
 
@@ -71,39 +72,33 @@ class GenericAPIView(generics.GenericAPIView):
         return self.write_serializer_class
 
 
-class CreateAPIView(CreateModelMixin, generics.CreateAPIView, GenericAPIView):
+class CreateAPIView(CreateModelMixin, GenericAPIView):
     pass
 
 
-class UpdateAPIView(UpdateModelMixin, generics.UpdateAPIView, GenericAPIView):
+class UpdateAPIView(UpdateModelMixin, GenericAPIView):
     pass
 
 
-class ListAPIView(ListModelMixin, generics.ListAPIView, GenericAPIView):
+class ListAPIView(ListModelMixin, GenericAPIView):
     pass
 
 
-class RetrieveAPIView(
-        RetrieveModelMixin, generics.RetrieveAPIView, GenericAPIView):
+class RetrieveAPIView(RetrieveModelMixin, GenericAPIView):
     pass
 
 
-class ListCreateAPIView(
-        CreateModelMixin, ListModelMixin, generics.ListCreateAPIView, GenericAPIView):
+class ListCreateAPIView(ListModelMixin, CreateModelMixin, GenericAPIView):
     pass
 
 
-class RetrieveDestroyAPIView(
-        RetrieveModelMixin, generics.RetrieveDestroyAPIView, GenericAPIView):
+class RetrieveDestroyAPIView(RetrieveModelMixin, DestroyModelMixin, GenericAPIView):
     pass
 
 
-class RetrieveUpdateAPIView(
-        UpdateModelMixin, RetrieveModelMixin, generics.RetrieveUpdateAPIView, GenericAPIView):
+class RetrieveUpdateAPIView(RetrieveModelMixin, UpdateModelMixin, GenericAPIView):
     pass
 
 
-class RetrieveUpdateDestroyAPIView(
-        UpdateModelMixin, RetrieveModelMixin, generics.RetrieveUpdateDestroyAPIView,
-        GenericAPIView):
+class RetrieveUpdateDestroyAPIView(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin, GenericAPIView):
     pass
