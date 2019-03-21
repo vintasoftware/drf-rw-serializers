@@ -1,21 +1,26 @@
 # -*- coding: utf-8 -*-
 
-from rest_framework import viewsets
+from rest_framework import viewsets, mixins
 
 from .generics import GenericAPIView
 from .mixins import CreateModelMixin, UpdateModelMixin, ListModelMixin, RetrieveModelMixin
 
 
-class GenericViewSet(GenericAPIView, viewsets.GenericViewSet):
+class GenericViewSet(GenericAPIView,
+                     viewsets.GenericViewSet):
     pass
 
 
-class ModelViewSet(
-        CreateModelMixin, UpdateModelMixin, ListModelMixin, RetrieveModelMixin,
-        viewsets.ModelViewSet, GenericAPIView):
+class ModelViewSet(CreateModelMixin,
+                   RetrieveModelMixin,
+                   UpdateModelMixin,
+                   mixins.DestroyModelMixin,
+                   ListModelMixin,
+                   GenericViewSet):
     pass
 
 
-class ReadOnlyModelViewSet(
-        ListModelMixin, RetrieveModelMixin, viewsets.ReadOnlyModelViewSet, GenericAPIView):
+class ReadOnlyModelViewSet(RetrieveModelMixin,
+                           ListModelMixin,
+                           GenericViewSet):
     pass
