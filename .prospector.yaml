@@ -34,6 +34,7 @@ pylint:
     - no-self-use
     - no-member
     - useless-object-inheritance
+    - too-many-function-args
   options:
     max-line-length: 100
     max-parents: 20
