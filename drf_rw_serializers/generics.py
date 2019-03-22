@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from rest_framework import generics
+from rest_framework import generics, mixins
 
 from .mixins import CreateModelMixin, UpdateModelMixin, ListModelMixin, RetrieveModelMixin
 
@@ -71,39 +71,82 @@ class GenericAPIView(generics.GenericAPIView):
         return self.write_serializer_class
 
 
-class CreateAPIView(CreateModelMixin, generics.CreateAPIView, GenericAPIView):
-    pass
+class CreateAPIView(CreateModelMixin, GenericAPIView):
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
 
 
-class UpdateAPIView(UpdateModelMixin, generics.UpdateAPIView, GenericAPIView):
-    pass
+class UpdateAPIView(UpdateModelMixin, GenericAPIView):
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
 
 
-class ListAPIView(ListModelMixin, generics.ListAPIView, GenericAPIView):
-    pass
+class ListAPIView(ListModelMixin, GenericAPIView):
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
 
 
-class RetrieveAPIView(
-        RetrieveModelMixin, generics.RetrieveAPIView, GenericAPIView):
-    pass
+class RetrieveAPIView(RetrieveModelMixin, GenericAPIView):
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
 
 
-class ListCreateAPIView(
-        CreateModelMixin, ListModelMixin, generics.ListCreateAPIView, GenericAPIView):
-    pass
+class ListCreateAPIView(ListModelMixin,
+                        CreateModelMixin,
+                        GenericAPIView):
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
 
 
-class RetrieveDestroyAPIView(
-        RetrieveModelMixin, generics.RetrieveDestroyAPIView, GenericAPIView):
-    pass
+class RetrieveDestroyAPIView(RetrieveModelMixin,
+                             mixins.DestroyModelMixin,
+                             GenericAPIView):
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
 
 
-class RetrieveUpdateAPIView(
-        UpdateModelMixin, RetrieveModelMixin, generics.RetrieveUpdateAPIView, GenericAPIView):
-    pass
+class RetrieveUpdateAPIView(RetrieveModelMixin,
+                            UpdateModelMixin,
+                            GenericAPIView):
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
 
 
-class RetrieveUpdateDestroyAPIView(
-        UpdateModelMixin, RetrieveModelMixin, generics.RetrieveUpdateDestroyAPIView,
-        GenericAPIView):
-    pass
+class RetrieveUpdateDestroyAPIView(RetrieveModelMixin,
+                                   UpdateModelMixin,
+                                   mixins.DestroyModelMixin,
+                                   GenericAPIView):
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
