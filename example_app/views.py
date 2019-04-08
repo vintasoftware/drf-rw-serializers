@@ -52,7 +52,7 @@ class OrderRetrieveWithGenericEndpoint(generics.RetrieveAPIView):
     write_serializer_class = OrderCreateSerializer
 
 
-class OrderCreateWithMixinEndpoint(generics.GenericAPIView, mixins.CreateModelMixin):
+class OrderCreateWithMixinEndpoint(mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Order.objects.all()
     read_serializer_class = OrderListSerializer
     write_serializer_class = OrderCreateSerializer
@@ -61,7 +61,7 @@ class OrderCreateWithMixinEndpoint(generics.GenericAPIView, mixins.CreateModelMi
         return self.create(request, *args, **kwargs)
 
 
-class OrderUpdateWithMixinEndpoint(generics.GenericAPIView, mixins.UpdateModelMixin):
+class OrderUpdateWithMixinEndpoint(mixins.UpdateModelMixin, generics.GenericAPIView):
     queryset = Order.objects.all()
     read_serializer_class = OrderListSerializer
     write_serializer_class = OrderCreateSerializer
@@ -73,7 +73,7 @@ class OrderUpdateWithMixinEndpoint(generics.GenericAPIView, mixins.UpdateModelMi
         return self.partial_update(request, *args, **kwargs)
 
 
-class OrderListWithMixinEndpoint(generics.GenericAPIView, mixins.ListModelMixin):
+class OrderListWithMixinEndpoint(mixins.ListModelMixin, generics.GenericAPIView):
     queryset = Order.objects.all()
     read_serializer_class = OrderListSerializer
     write_serializer_class = OrderCreateSerializer
@@ -82,7 +82,7 @@ class OrderListWithMixinEndpoint(generics.GenericAPIView, mixins.ListModelMixin)
         return self.list(request, *args, **kwargs)
 
 
-class OrderRetrieveWithMixinEndpoint(generics.GenericAPIView, mixins.RetrieveModelMixin):
+class OrderRetrieveWithMixinEndpoint(mixins.RetrieveModelMixin, generics.GenericAPIView):
     queryset = Order.objects.all()
     read_serializer_class = OrderListSerializer
     write_serializer_class = OrderCreateSerializer
