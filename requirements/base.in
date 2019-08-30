@@ -1,3 +1,4 @@
 # Core requirements for using this application
 
-djangorestframework
+djangorestframework==3.9.4   # pinned to support python 2.7
+more-itertools==5.0.0        # pinned to support python 2.7
