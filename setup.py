@@ -47,7 +47,7 @@ setup(
     ],
     include_package_data=True,
     install_requires=[
-        "Django>=1.8,<2.2"
+        "Django>=1.8,<2.3"
     ],
     license="MIT",
     zip_safe=False,
@@ -59,6 +59,7 @@ setup(
         'Framework :: Django :: 1.11',
         'Framework :: Django :: 2.0',
         'Framework :: Django :: 2.1',
+        'Framework :: Django :: 2.2',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)',
         'Natural Language :: English',
