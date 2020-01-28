@@ -12,6 +12,7 @@ env:
   - TOXENV=django20
   - TOXENV=django21
   - TOXENV=django22
+  - TOXENV=django30
 
 matrix:
   exclude:
@@ -21,6 +22,8 @@ matrix:
       env: TOXENV=django21
     - python: 2.7
       env: TOXENV=django22
+    - python: 2.7
+      env: TOXENV=django30
   include:
     - python: 3.6
       env: TOXENV=quality
