@@ -21,8 +21,9 @@ _____
 * Support Python 3.7
 * Support Django 3.0
 
+
 Removed
-_____
+_______
 * Drop support to Django 1.10
 * Drop support to Python 2.7
 * Drop support to Python 3.6
