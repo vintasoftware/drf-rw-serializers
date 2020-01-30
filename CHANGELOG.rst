@@ -14,8 +14,15 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[1.0.3] - 2020-01-29
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Added
+_____
 * Support Python 3.7
 * Support Django 3.0
+
+Removed
+_____
 * Drop support to Django 1.10
 * Drop support to Python 2.7
 * Drop support to Python 3.6
