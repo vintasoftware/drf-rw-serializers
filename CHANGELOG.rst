@@ -14,7 +14,11 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
-*
+* Support Python 3.7
+* Support Django 3.0
+* Drop support to Django 1.10
+* Drop support to Python 2.7
+* Drop support to Python 3.6
 
 [1.0.2] - 2019-08-30
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

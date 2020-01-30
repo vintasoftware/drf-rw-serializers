@@ -4,4 +4,4 @@
 pytest-cov                # pytest extension for code coverage statistics
 pytest-django             # pytest extension for better Django support
 model-mommy               # helper to create random data for tests 
-pytest==4.6.5             # pinned to support python 2.7
+pytest

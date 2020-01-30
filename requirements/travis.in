@@ -1,6 +1,5 @@
 # Requirements for running tests in Travis
 
 codecov                   # Code coverage reporting
-more-itertools==5.0.0     # pinned to support python 2.7
 tox                       # Virtualenv management for tests
 tox-battery               # Makes tox aware of requirements file changes
