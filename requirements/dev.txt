@@ -5,14 +5,14 @@
 #    pip-compile --output-file=requirements/dev.txt requirements/base.in requirements/dev.in requirements/quality.in
 #
 asgiref==3.2.3            # via django
-bleach==3.1.0             # via readme-renderer
+bleach==3.1.4             # via readme-renderer
 certifi==2019.11.28       # via requests
 cffi==1.13.2              # via cryptography
 chardet==3.0.4            # via requests
 click==7.0                # via pip-tools
 cryptography==2.8         # via secretstorage
-diff-cover==2.5.2
-django==3.0.3
+diff-cover==2.5.2         # via -r dev.in
+django==3.0.3             # via -r dev.in
 docutils==0.16            # via readme-renderer
 filelock==3.0.12          # via tox
 idna==2.8                 # via requests
@@ -23,7 +23,7 @@ jinja2==2.11.0            # via diff-cover, jinja2-pluralize
 keyring==21.1.0           # via twine
 markupsafe==1.1.1         # via jinja2
 packaging==20.1           # via tox
-pip-tools==4.4.0
+pip-tools==4.4.0          # via -r dev.in
 pkginfo==1.5.0.1          # via twine
 pluggy==0.13.1            # via diff-cover, tox
 py==1.8.1                 # via tox
@@ -38,14 +38,14 @@ secretstorage==3.1.2      # via keyring
 six==1.14.0               # via bleach, cryptography, diff-cover, packaging, pip-tools, readme-renderer, tox
 sqlparse==0.3.0           # via django
 toml==0.10.0              # via tox
-tox-battery==0.5.2
-tox==3.14.3
+tox-battery==0.5.2        # via -r dev.in
+tox==3.14.3               # via -r dev.in, tox-battery
 tqdm==4.42.0              # via twine
-twine==3.1.1
+twine==3.1.1              # via -r dev.in
 urllib3==1.25.8           # via requests
 virtualenv==16.7.9        # via tox
 webencodings==0.5.1       # via bleach
-wheel==0.34.1
+wheel==0.34.1             # via -r dev.in
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
