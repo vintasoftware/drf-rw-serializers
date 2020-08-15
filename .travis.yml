@@ -24,7 +24,7 @@ cache:
   - pip
 
 before_install:
-  - pip install pip==20.0.1
+  - pip install --upgrade pip
 
 install:
   - pip install -r requirements/travis.txt
