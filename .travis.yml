@@ -11,6 +11,7 @@ env:
   - TOXENV=django21
   - TOXENV=django22
   - TOXENV=django30
+  - TOXENV=django31
 
 matrix:
   include:
@@ -21,7 +22,7 @@ matrix:
 
 cache:
   - pip
-  
+
 before_install:
   - pip install --upgrade pip
 
