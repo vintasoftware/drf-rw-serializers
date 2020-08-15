@@ -7,7 +7,7 @@ Tests for the `drf-rw-serializers` mixins module.
 from __future__ import absolute_import, unicode_literals
 
 from django.utils import version as django_version
-from model_mommy import mommy
+from model_bakery import baker
 
 from test_utils.base_tests import (
     BaseTestCase, TestListRequestSuccess, TestRetrieveRequestSuccess,
@@ -35,8 +35,8 @@ class OrderUpdateWithMixinEndpointTests(BaseTestCase, TestUpdateRequestSuccess):
 
     def setUp(self):
         super(OrderUpdateWithMixinEndpointTests, self).setUp()
-        self.object = mommy.make('example_app.Order')
-        mommy.make('example_app.OrderedMeal', order=self.object, _quantity=2)
+        self.object = baker.make('example_app.Order')
+        baker.make('example_app.OrderedMeal', order=self.object, _quantity=2)
         self.view_url = reverse('update_mixin', kwargs={'pk': self.object.pk})
         self.retrieve_serializer_class = OrderListSerializer
         self.update_in_serializer_class = OrderCreateSerializer
@@ -55,7 +55,7 @@ class OrderRetrieveWithMixinEndpointTests(BaseTestCase, TestRetrieveRequestSucce
 
     def setUp(self):
         super(OrderRetrieveWithMixinEndpointTests, self).setUp()
-        self.object = mommy.make('example_app.Order')
-        mommy.make('example_app.OrderedMeal', order=self.object, _quantity=2)
+        self.object = baker.make('example_app.Order')
+        baker.make('example_app.OrderedMeal', order=self.object, _quantity=2)
         self.view_url = reverse('retrieve_mixin', kwargs={'pk': self.object.pk})
         self.retrieve_serializer_class = OrderListSerializer

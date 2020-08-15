@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from model_mommy import mommy
+from model_bakery import baker
 from rest_framework.test import APITestCase, APIClient
 
 from example_app.models import Order
@@ -9,7 +9,7 @@ from example_app.serializers import OrderedMealDetailsSerializer
 class BaseTestCase(APITestCase):
 
     def setUp(self):
-        self.meals = mommy.make('example_app.Meal', _quantity=3)
+        self.meals = baker.make('example_app.Meal', _quantity=3)
 
         user_model = get_user_model()
 
@@ -25,9 +25,9 @@ class BaseTestCase(APITestCase):
 class TestListRequestSuccess(object):
 
     def test_list_request_success(self):
-        orders = mommy.make('example_app.Order', _quantity=3)
+        orders = baker.make('example_app.Order', _quantity=3)
         for order in orders:
-            mommy.make('example_app.OrderedMeal', order=order, _quantity=2)
+            baker.make('example_app.OrderedMeal', order=order, _quantity=2)
 
         response = self.auth_client.get(self.view_url, format='json')
         self.assertEqual(response.status_code, 200)
@@ -38,8 +38,8 @@ class TestListRequestSuccess(object):
 class TestRetrieveRequestSuccess(object):
 
     def test_list_request_success(self):
-        order = mommy.make('example_app.Order')
-        mommy.make('example_app.OrderedMeal', order=order, _quantity=2)
+        order = baker.make('example_app.Order')
+        baker.make('example_app.OrderedMeal', order=order, _quantity=2)
         response = self.auth_client.get(self.view_url, format='json')
         self.assertEqual(response.status_code, 200)
         self.assertCountEqual(

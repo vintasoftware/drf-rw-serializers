@@ -7,7 +7,7 @@ Tests for the `drf-rw-serializers` models module.
 from __future__ import absolute_import, unicode_literals
 
 from django.utils import version as django_version
-from model_mommy import mommy
+from model_bakery import baker
 
 from test_utils.base_tests import (
     BaseTestCase, TestListRequestSuccess, TestRetrieveRequestSuccess,
@@ -37,8 +37,8 @@ class OrderRetrieveUpdateDestroyEndpointTests(
 
     def setUp(self):
         super(OrderRetrieveUpdateDestroyEndpointTests, self).setUp()
-        self.object = mommy.make('example_app.Order')
-        mommy.make('example_app.OrderedMeal', order=self.object, _quantity=2)
+        self.object = baker.make('example_app.Order')
+        baker.make('example_app.OrderedMeal', order=self.object, _quantity=2)
         self.view_url = reverse('retrieve_update_destroy', kwargs={'pk': self.object.pk})
         self.retrieve_serializer_class = OrderListSerializer
         self.update_in_serializer_class = OrderCreateSerializer
@@ -59,8 +59,8 @@ class OrderRetrieveUpdateEndpointTests(
 
     def setUp(self):
         super(OrderRetrieveUpdateEndpointTests, self).setUp()
-        self.object = mommy.make('example_app.Order')
-        mommy.make('example_app.OrderedMeal', order=self.object, _quantity=2)
+        self.object = baker.make('example_app.Order')
+        baker.make('example_app.OrderedMeal', order=self.object, _quantity=2)
         self.view_url = reverse('retrieve_update', kwargs={'pk': self.object.pk})
         self.retrieve_serializer_class = OrderListSerializer
         self.update_in_serializer_class = OrderCreateSerializer
@@ -81,8 +81,8 @@ class OrderUpdateWithGenericEndpointTests(BaseTestCase, TestUpdateRequestSuccess
 
     def setUp(self):
         super(OrderUpdateWithGenericEndpointTests, self).setUp()
-        self.object = mommy.make('example_app.Order')
-        mommy.make('example_app.OrderedMeal', order=self.object, _quantity=2)
+        self.object = baker.make('example_app.Order')
+        baker.make('example_app.OrderedMeal', order=self.object, _quantity=2)
         self.view_url = reverse('update', kwargs={'pk': self.object.pk})
         self.retrieve_serializer_class = OrderListSerializer
         self.update_in_serializer_class = OrderCreateSerializer
@@ -101,7 +101,7 @@ class OrderRetrieveWithGenericEndpointTests(BaseTestCase, TestRetrieveRequestSuc
 
     def setUp(self):
         super(OrderRetrieveWithGenericEndpointTests, self).setUp()
-        self.object = mommy.make('example_app.Order')
-        mommy.make('example_app.OrderedMeal', order=self.object, _quantity=2)
+        self.object = baker.make('example_app.Order')
+        baker.make('example_app.OrderedMeal', order=self.object, _quantity=2)
         self.view_url = reverse('retrieve', kwargs={'pk': self.object.pk})
         self.retrieve_serializer_class = OrderListSerializer
