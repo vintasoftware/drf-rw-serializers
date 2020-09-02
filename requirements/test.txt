@@ -5,13 +5,13 @@
 #    pip-compile --output-file=requirements/test.txt requirements/base.in requirements/test.in
 #
 asgiref==3.2.10           # via django
-attrs==19.3.0             # via pytest
+attrs==20.1.0             # via pytest
 coverage==5.2.1           # via pytest-cov
 djangorestframework==3.11.1  # via -r requirements/base.in
 importlib-metadata==1.7.0  # via pluggy, pytest
 iniconfig==1.0.1          # via pytest
 model-bakery==1.1.1       # via -r requirements/test.in
-more-itertools==8.4.0     # via pytest
+more-itertools==8.5.0     # via pytest
 packaging==20.4           # via pytest
 pluggy==0.13.1            # via pytest
 py==1.9.0                 # via pytest
