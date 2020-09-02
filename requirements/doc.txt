@@ -10,7 +10,7 @@ babel==2.8.0              # via sphinx
 bleach==3.1.5             # via readme-renderer
 certifi==2020.6.20        # via requests
 chardet==3.0.4            # via doc8, requests
-django==3.1               # via djangorestframework
+django==3.0.10            # via -r requirements/doc.in, djangorestframework
 djangorestframework==3.11.1  # via -r requirements/base.in
 doc8==0.8.1               # via -r requirements/doc.in
 docutils==0.16            # via doc8, readme-renderer, restructuredtext-lint, sphinx
@@ -20,7 +20,7 @@ importlib-metadata==1.7.0  # via stevedore
 jinja2==2.11.2            # via sphinx
 markupsafe==1.1.1         # via jinja2
 packaging==20.4           # via bleach, sphinx
-pbr==5.4.5                # via stevedore
+pbr==5.5.0                # via stevedore
 pygments==2.6.1           # via doc8, readme-renderer, sphinx
 pyparsing==2.4.7          # via packaging
 pytz==2020.1              # via babel, django
@@ -37,7 +37,7 @@ sphinxcontrib-jsmath==1.0.1  # via sphinx
 sphinxcontrib-qthelp==1.0.3  # via sphinx
 sphinxcontrib-serializinghtml==1.1.4  # via sphinx
 sqlparse==0.3.1           # via django
-stevedore==3.2.0          # via doc8
+stevedore==3.2.1          # via doc8
 urllib3==1.25.10          # via requests
 webencodings==0.5.1       # via bleach
 zipp==3.1.0               # via importlib-metadata
