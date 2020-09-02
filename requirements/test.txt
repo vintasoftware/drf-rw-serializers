@@ -4,22 +4,23 @@
 #
 #    pip-compile --output-file=requirements/test.txt requirements/base.in requirements/test.in
 #
-asgiref==3.2.3            # via django
+asgiref==3.2.10           # via django
 attrs==19.3.0             # via pytest
-coverage==5.0.3           # via pytest-cov
-djangorestframework==3.11.0
-importlib-metadata==1.5.0  # via pluggy, pytest
-model-mommy==2.0.0
-more-itertools==8.2.0     # via pytest
-packaging==20.1           # via pytest
+coverage==5.2.1           # via pytest-cov
+djangorestframework==3.11.1  # via -r requirements/base.in
+importlib-metadata==1.7.0  # via pluggy, pytest
+iniconfig==1.0.1          # via pytest
+model-mommy==2.0.0        # via -r requirements/test.in
+more-itertools==8.4.0     # via pytest
+packaging==20.4           # via pytest
 pluggy==0.13.1            # via pytest
-py==1.8.1                 # via pytest
-pyparsing==2.4.6          # via packaging
-pytest-cov==2.8.1
-pytest-django==3.8.0
-pytest==5.3.5
-pytz==2019.3              # via django
-six==1.14.0               # via packaging
-sqlparse==0.3.0           # via django
-wcwidth==0.1.8            # via pytest
-zipp==2.1.0               # via importlib-metadata
+py==1.9.0                 # via pytest
+pyparsing==2.4.7          # via packaging
+pytest-cov==2.10.1        # via -r requirements/test.in
+pytest-django==3.9.0      # via -r requirements/test.in
+pytest==6.0.1             # via -r requirements/test.in, pytest-cov, pytest-django
+pytz==2020.1              # via django
+six==1.15.0               # via packaging
+sqlparse==0.3.1           # via django
+toml==0.10.1              # via pytest
+zipp==3.1.0               # via importlib-metadata
