@@ -7,7 +7,7 @@ Tests for the `drf-rw-serializers` viewsets module.
 from __future__ import absolute_import, unicode_literals
 
 from django.utils import version as django_version
-from model_mommy import mommy
+from model_bakery import baker
 
 from test_utils.base_tests import (
     BaseTestCase, TestListRequestSuccess, TestRetrieveRequestSuccess,
@@ -37,8 +37,8 @@ class OrderViewsetRetrieveUpdateDestroyTests(
 
     def setUp(self):
         super(OrderViewsetRetrieveUpdateDestroyTests, self).setUp()
-        self.object = mommy.make('example_app.Order')
-        mommy.make('example_app.OrderedMeal', order=self.object, _quantity=2)
+        self.object = baker.make('example_app.Order')
+        baker.make('example_app.OrderedMeal', order=self.object, _quantity=2)
         self.view_url = reverse(
             'viewset_retrieve_update_destroy', kwargs={'pk': self.object.pk})
         self.retrieve_serializer_class = OrderListSerializer
