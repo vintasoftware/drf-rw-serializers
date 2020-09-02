@@ -14,12 +14,12 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
-[1.0.3] - 2020-01-29
+[1.0.4] - 2020-09-02
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Added
 _____
-* Support Python 3.7
-* Support Django 3.0
+* Move from model-mommy to model-bakery
+* Support Django 3.1
 
 
 Removed
