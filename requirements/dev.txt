@@ -17,7 +17,7 @@ colorama==0.4.3           # via twine
 cryptography==3.0         # via secretstorage
 diff-cover==3.0.1         # via -r requirements/dev.in
 distlib==0.3.1            # via virtualenv
-django==3.0.9             # via -r requirements/dev.in, djangorestframework
+django==3.1               # via -r requirements/dev.in, djangorestframework
 djangorestframework==3.11.1  # via -r requirements/base.in
 docutils==0.16            # via readme-renderer
 dodgy==0.2.1              # via prospector

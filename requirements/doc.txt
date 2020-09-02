@@ -10,7 +10,7 @@ babel==2.8.0              # via sphinx
 bleach==3.1.5             # via readme-renderer
 certifi==2020.6.20        # via requests
 chardet==3.0.4            # via doc8, requests
-django==3.0.9             # via -r requirements/doc.in, djangorestframework
+django==3.1               # via djangorestframework
 djangorestframework==3.11.1  # via -r requirements/base.in
 doc8==0.8.1               # via -r requirements/doc.in
 docutils==0.16            # via doc8, readme-renderer, restructuredtext-lint, sphinx
