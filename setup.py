@@ -47,7 +47,7 @@ setup(
     ],
     include_package_data=True,
     install_requires=[
-        "Django>=1.11,<=3.1"
+        "Django>=1.11,<4"
     ],
     license="MIT",
     zip_safe=False,
