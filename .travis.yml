@@ -12,6 +12,7 @@ env:
   - TOXENV=django22
   - TOXENV=django30
   - TOXENV=django31
+  - TOXENV=django32
 
 matrix:
   include:
