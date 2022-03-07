@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-
-from django.conf.urls import url
+from django.utils import version as django_version
 from rest_framework.urlpatterns import format_suffix_patterns
 from .views import (
     OrderListCreateEndpoint, OrderRetrieveUpdateDestroyEndpoint,
@@ -10,6 +9,11 @@ from .views import (
     OrderUpdateWithMixinEndpoint, OrderListWithoutReadSerializerEndpoint,
     OrderListWithMixinEndpoint, OrderRetrieveWithMixinEndpoint,
     OrderViewset)
+
+if django_version.get_complete_version() < (2, 0, 0):
+    from django.conf.urls import url
+else:
+    from django.urls import re_path as url
 
 
 urlpatterns = [
