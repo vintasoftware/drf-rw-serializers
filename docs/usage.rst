@@ -16,7 +16,7 @@ Eg.:
 
     from drf_rw_serializers import generics
     from .models import MyModel
-    from .serializers import MyReadSerializer, MyWriteSerializer
+    from .serializers import MyModelReadSerializer, MyModelWriteSerializer
 
 
     class MyModelListCreateView(generics.ListCreateAPIView):
@@ -45,7 +45,7 @@ Eg.:
 
     from drf_rw_serializers import generics
     from .models import MyModel
-    from .serializers import MyWriteSerializer
+    from .serializers import MyModelWriteSerializer
 
 
     class MyModelListCreateView(generics.ListCreateAPIView):
