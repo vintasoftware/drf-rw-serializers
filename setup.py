@@ -63,7 +63,7 @@ setup(
         'Framework :: Django :: 3.2',
         'Framework :: Django :: 4.0',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)',
+        'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.7',
