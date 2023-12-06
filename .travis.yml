@@ -13,13 +13,17 @@ env:
   - TOXENV=django30
   - TOXENV=django31
   - TOXENV=django32
+  - TOXENV=django40
+  - TOXENV=django41
+  - TOXENV=django42
+  - TOXENV=django50
 
 matrix:
   include:
     - python: 3.10
       env: TOXENV=django32
     - python: 3.10
-      env: TOXENV=django40
+      env: TOXENV=django42
     - python: 3.7
       env: TOXENV=quality
     - python: 3.7

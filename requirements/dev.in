@@ -1,6 +1,6 @@
 # Additional requirements for development of this application
 
-django>=3.0.3,<5
+django>=3.0.3,<5.1
 diff-cover                # Changeset diff test coverage
 pip-tools                 # Requirements file management
 tox                       # virtualenv management for tests
