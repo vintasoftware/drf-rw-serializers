@@ -57,5 +57,5 @@ class OrderRetrieveWithMixinEndpointTests(BaseTestCase, TestRetrieveRequestSucce
         super(OrderRetrieveWithMixinEndpointTests, self).setUp()
         self.object = baker.make('example_app.Order')
         baker.make('example_app.OrderedMeal', order=self.object, _quantity=2)
-        self.view_url = reverse('retrieve_mixin', kwargs={'pk': 3423423})
+        self.view_url = reverse('retrieve_mixin', kwargs={'pk': self.object.pk})
         self.retrieve_serializer_class = OrderListSerializer
