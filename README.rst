@@ -1,7 +1,7 @@
 Django REST Framework Read & Write Serializers
 ==============================================
 
-|pypi-badge| |travis-badge| |codecov-badge| |doc-badge| |pyversions-badge|
+|pypi-badge| |ga-badge| |codecov-badge| |doc-badge| |pyversions-badge|
 |license-badge|
 
 Generic views, viewsets and mixins that extend the Django REST Framework ones
@@ -63,9 +63,9 @@ Copyright (c) 2020 Vinta Serviços e Soluções Tecnológicas Ltda
     :target: https://pypi.python.org/pypi/drf-rw-serializers/
     :alt: PyPI
 
-.. |travis-badge| image:: https://travis-ci.org/vintasoftware/drf-rw-serializers.svg?branch=master
-    :target: https://travis-ci.org/vintasoftware/drf-rw-serializers
-    :alt: Travis
+.. |ga-badge| image:: https://github.com/vintasoftware/drf-rw-serializers/actions/workflows/config.yml/badge.svg?branch=master
+    :target: https://github.com/vintasoftware/drf-rw-serializers
+    :alt: GitHub Actions
 
 .. |codecov-badge| image:: http://codecov.io/github/vintasoftware/drf-rw-serializers/coverage.svg?branch=master
     :target: http://codecov.io/github/vintasoftware/drf-rw-serializers?branch=master
