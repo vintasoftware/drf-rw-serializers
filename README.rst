@@ -72,7 +72,7 @@ Copyright (c) 2020 Vinta Serviços e Soluções Tecnológicas Ltda
     :alt: Codecov
 
 .. |doc-badge| image:: https://readthedocs.org/projects/drf-rw-serializers/badge/?version=latest
-    :target: http://drf-rw-serializers.readthedocs.io/en/latest/
+    :target: https://drf-rw-serializers.readthedocs.io/en/latest/
     :alt: Documentation
 
 .. |pyversions-badge| image:: https://img.shields.io/pypi/pyversions/drf-rw-serializers.svg
