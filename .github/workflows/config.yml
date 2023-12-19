@@ -31,3 +31,7 @@ jobs:
         OS: ${{ matrix.os }}
         DJANGO: ${{ matrix.django-version }}
       run: tox
+    - name: Run Codecov
+      run: |
+        python -m pip install codecov
+        codecov
