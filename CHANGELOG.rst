@@ -14,6 +14,21 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[1.1.0] - 2023-12-22
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Added
+_____
+* Support Django 4.1
+* Support Django 4.2
+* Support Django 5.0
+* Support Python 3.11
+* Support Python 3.12
+
+Fixed
+_____
+* Fixes CI workflow by migrating to GitHub Actions
+* Fixes ReadTheDocs failing build
+
 [1.0.5] - 2022-03-02
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Added
