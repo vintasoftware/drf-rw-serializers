@@ -14,14 +14,10 @@ certifi==2023.11.17
     # via requests
 charset-normalizer==3.3.2
     # via requests
-django==5.0
-    # via
-    #   -r requirements/doc.in
-    #   djangorestframework
-djangorestframework==3.14.0
-    # via -r requirements/base.in
+django==5.0.2
+    # via -r doc.in
 doc8==1.1.1
-    # via -r requirements/doc.in
+    # via -r doc.in
 docutils==0.20.1
     # via
     #   doc8
@@ -47,10 +43,8 @@ pygments==2.17.2
     #   doc8
     #   readme-renderer
     #   sphinx
-pytz==2023.3.post1
-    # via djangorestframework
 readme-renderer==42.0
-    # via -r requirements/doc.in
+    # via -r doc.in
 requests==2.31.0
     # via sphinx
 restructuredtext-lint==1.4.0
@@ -59,7 +53,7 @@ snowballstemmer==2.2.0
     # via sphinx
 sphinx==7.2.6
     # via
-    #   -r requirements/doc.in
+    #   -r doc.in
     #   sphinxcontrib-applehelp
     #   sphinxcontrib-devhelp
     #   sphinxcontrib-htmlhelp
