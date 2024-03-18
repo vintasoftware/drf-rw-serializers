@@ -6,15 +6,6 @@
 #
 asgiref==3.7.2
     # via django
-astroid==2.15.8
-    # via
-    #   -r requirements/quality.in
-    #   pylint
-    #   pylint-celery
-    #   pylint-flask
-    #   requirements-detector
-bandit==1.7.5
-    # via -r requirements/quality.in
 build==1.0.3
     # via pip-tools
 certifi==2023.11.17
@@ -26,51 +17,27 @@ chardet==5.2.0
 charset-normalizer==3.3.2
     # via requests
 click==8.1.7
-    # via
-    #   pip-tools
-    #   safety
+    # via pip-tools
 cryptography==41.0.7
     # via secretstorage
 diff-cover==8.0.1
-    # via -r requirements/dev.in
-dill==0.3.7
-    # via pylint
+    # via -r dev.in
 distlib==0.3.7
     # via virtualenv
-django==5.0
-    # via
-    #   -r requirements/dev.in
-    #   djangorestframework
-djangorestframework==3.14.0
-    # via -r requirements/base.in
+django==5.0.3
+    # via -r dev.in
 docutils==0.20.1
     # via readme-renderer
-dodgy==0.2.1
-    # via prospector
-dparse==0.6.3
-    # via safety
 filelock==3.13.1
     # via
     #   tox
     #   virtualenv
-flake8==3.8.4
-    # via flake8-polyfill
-flake8-polyfill==1.0.2
-    # via pep8-naming
-gitdb==4.0.11
-    # via gitpython
-gitpython==3.1.40
-    # via bandit
 idna==3.6
     # via requests
 importlib-metadata==7.0.0
     # via
     #   keyring
     #   twine
-isort==5.12.0
-    # via
-    #   -r requirements/quality.in
-    #   pylint
 jaraco-classes==3.3.0
     # via keyring
 jeepney==0.8.0
@@ -81,17 +48,10 @@ jinja2==3.1.2
     # via diff-cover
 keyring==24.3.0
     # via twine
-lazy-object-proxy==1.9.0
-    # via astroid
 markdown-it-py==3.0.0
     # via rich
 markupsafe==2.1.3
     # via jinja2
-mccabe==0.6.1
-    # via
-    #   flake8
-    #   prospector
-    #   pylint
 mdurl==0.1.2
     # via markdown-it-py
 more-itertools==10.1.0
@@ -101,145 +61,62 @@ nh3==0.2.14
 packaging==23.2
     # via
     #   build
-    #   dparse
-    #   pyproject-api
-    #   requirements-detector
-    #   safety
     #   tox
-pbr==6.0.0
-    # via stevedore
-pep8-naming==0.10.0
-    # via prospector
 pip-tools==7.3.0
-    # via -r requirements/dev.in
+    # via -r dev.in
 pkginfo==1.9.6
     # via twine
 platformdirs==4.1.0
-    # via
-    #   pylint
-    #   tox
-    #   virtualenv
+    # via virtualenv
 pluggy==1.3.0
     # via
     #   diff-cover
     #   tox
-prospector==1.4.1.1
-    # via -r requirements/quality.in
 py==1.11.0
     # via tox
-pycodestyle==2.6.0
-    # via
-    #   flake8
-    #   prospector
 pycparser==2.21
     # via cffi
-pydocstyle==6.3.0
-    # via prospector
-pyflakes==2.2.0
-    # via
-    #   flake8
-    #   prospector
 pygments==2.17.2
     # via
     #   diff-cover
     #   readme-renderer
     #   rich
-pylint==2.17.7
-    # via
-    #   -r requirements/quality.in
-    #   prospector
-    #   pylint-celery
-    #   pylint-django
-    #   pylint-flask
-    #   pylint-plugin-utils
-pylint-celery==0.3
-    # via
-    #   -r requirements/quality.in
-    #   prospector
-pylint-django==2.1.0
-    # via
-    #   -r requirements/quality.in
-    #   prospector
-pylint-flask==0.6
-    # via prospector
-pylint-plugin-utils==0.8.2
-    # via
-    #   prospector
-    #   pylint-celery
-    #   pylint-django
-    #   pylint-flask
 pyproject-hooks==1.0.0
     # via build
-pytz==2023.3.post1
-    # via djangorestframework
-pyyaml==6.0.1
-    # via
-    #   bandit
-    #   prospector
 readme-renderer==42.0
     # via twine
 requests==2.31.0
     # via
     #   requests-toolbelt
-    #   safety
     #   twine
 requests-toolbelt==1.0.0
     # via twine
-requirements-detector==1.2.2
-    # via prospector
 rfc3986==2.0.0
     # via twine
 rich==13.7.0
-    # via
-    #   bandit
-    #   twine
-ruamel-yaml==0.18.5
-    # via safety
-ruamel-yaml-clib==0.2.8
-    # via ruamel-yaml
-safety==2.3.4
-    # via -r requirements/quality.in
+    # via twine
 secretstorage==3.3.3
     # via keyring
-semver==3.0.2
-    # via requirements-detector
-setoptconf==0.3.0
-    # via prospector
 six==1.16.0
     # via tox
-smmap==5.0.1
-    # via gitdb
-snowballstemmer==2.2.0
-    # via pydocstyle
 sqlparse==0.4.4
     # via django
-stevedore==5.1.0
-    # via bandit
-toml==0.10.2
-    # via requirements-detector
 tomli==2.0.1
     # via
     #   build
-    #   dparse
     #   pip-tools
-    #   pylint
-    #   pyproject-api
     #   pyproject-hooks
     #   tox
-tomlkit==0.12.3
-    # via pylint
 tox==3.28.0
     # via
-    #   -r requirements/dev.in
+    #   -r dev.in
     #   tox-battery
 tox-battery==0.6.2
-    # via -r requirements/dev.in
+    # via -r dev.in
 twine==4.0.2
-    # via -r requirements/dev.in
+    # via -r dev.in
 typing-extensions==4.8.0
-    # via
-    #   asgiref
-    #   astroid
+    # via asgiref
 urllib3==2.1.0
     # via
     #   requests
@@ -248,10 +125,8 @@ virtualenv==20.25.0
     # via tox
 wheel==0.42.0
     # via
-    #   -r requirements/dev.in
+    #   -r dev.in
     #   pip-tools
-wrapt==1.16.0
-    # via astroid
 zipp==3.17.0
     # via importlib-metadata
 
