@@ -6,13 +6,13 @@
 #
 astroid==2.15.8
     # via
-    #   -r requirements/quality.in
+    #   -r quality.in
     #   pylint
     #   pylint-celery
     #   pylint-flask
     #   requirements-detector
 bandit==1.7.5
-    # via -r requirements/quality.in
+    # via -r quality.in
 certifi==2023.11.17
     # via requests
 charset-normalizer==3.3.2
@@ -33,11 +33,11 @@ gitdb==4.0.11
     # via gitpython
 gitpython==3.1.40
     # via bandit
-idna==3.6
+idna==3.7
     # via requests
 isort==5.12.0
     # via
-    #   -r requirements/quality.in
+    #   -r quality.in
     #   pylint
 lazy-object-proxy==1.9.0
     # via astroid
@@ -62,7 +62,7 @@ pep8-naming==0.10.0
 platformdirs==4.1.0
     # via pylint
 prospector==1.4.1.1
-    # via -r requirements/quality.in
+    # via -r quality.in
 pycodestyle==2.6.0
     # via
     #   flake8
@@ -77,7 +77,7 @@ pygments==2.17.2
     # via rich
 pylint==2.17.7
     # via
-    #   -r requirements/quality.in
+    #   -r quality.in
     #   prospector
     #   pylint-celery
     #   pylint-django
@@ -85,11 +85,11 @@ pylint==2.17.7
     #   pylint-plugin-utils
 pylint-celery==0.3
     # via
-    #   -r requirements/quality.in
+    #   -r quality.in
     #   prospector
 pylint-django==2.1.0
     # via
-    #   -r requirements/quality.in
+    #   -r quality.in
     #   prospector
 pylint-flask==0.6
     # via prospector
@@ -116,7 +116,7 @@ ruamel-yaml==0.18.5
 ruamel-yaml-clib==0.2.8
     # via ruamel-yaml
 safety==2.3.5
-    # via -r requirements/quality.in
+    # via -r quality.in
 semver==3.0.2
     # via requirements-detector
 setoptconf==0.3.0
