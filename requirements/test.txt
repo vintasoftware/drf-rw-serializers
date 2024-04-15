@@ -7,33 +7,29 @@
 asgiref==3.7.2
     # via django
 coverage[toml]==7.3.2
-    # via
-    #   coverage
-    #   pytest-cov
-djangorestframework==3.14.0
-    # via -r requirements/base.in
+    # via pytest-cov
+django==5.0.4
+    # via model-bakery
 exceptiongroup==1.2.0
     # via pytest
 iniconfig==2.0.0
     # via pytest
 model-bakery==1.17.0
-    # via -r requirements/test.in
+    # via -r test.in
 packaging==23.2
     # via pytest
 pluggy==1.3.0
     # via pytest
 pytest==7.4.3
     # via
-    #   -r requirements/test.in
+    #   -r test.in
     #   pytest-cov
     #   pytest-django
 pytest-cov==4.1.0
-    # via -r requirements/test.in
+    # via -r test.in
 pytest-django==4.7.0
-    # via -r requirements/test.in
-pytz==2023.3.post1
-    # via djangorestframework
-sqlparse==0.4.4
+    # via -r test.in
+sqlparse==0.5.0
     # via django
 tomli==2.0.1
     # via
