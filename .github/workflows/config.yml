@@ -2,7 +2,7 @@ name: main
 
 on:
   push:
-    branches: [main]
+    branches: [main, fix/get_serializer_class]
   pull_request:
     branches: [main]
 
@@ -11,7 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 4
+      # max-parallel: 4
       matrix:
         python-version: ['3.8', '3.9', '3.10', '3.11', '3.12']
         django-version: ['3.2', '4.0', '4.1', '4.2', '5.0']
