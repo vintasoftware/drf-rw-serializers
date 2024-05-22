@@ -1,15 +1,15 @@
-name: main
+name: Tests
 
-on:
-  push:
-    branches: [main, fix/drf-version-support]
-  pull_request:
-    branches: [main]
+on: [push, pull_request]
 
 jobs:
-  test:
+  tests:
+    name: Tests (Python ${{ matrix.python-version }})
+
     runs-on: ubuntu-latest
+
     strategy:
+      fail-fast: false
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
 
