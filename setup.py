@@ -47,22 +47,18 @@ setup(
     ],
     include_package_data=True,
     install_requires=[
-        "Django>=3.2,<6"
+        "Django>=4.2,<6"
     ],
     license="MIT",
     zip_safe=False,
     keywords='Django REST Framework, Serializers, REST, API, Django',
     classifiers=[
         'Framework :: Django',
-        'Framework :: Django :: 3.2',
-        'Framework :: Django :: 4.0',
-        'Framework :: Django :: 4.1',
         'Framework :: Django :: 4.2',
         'Framework :: Django :: 5.0',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
-        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
