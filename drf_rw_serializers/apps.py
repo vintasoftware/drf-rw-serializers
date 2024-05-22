@@ -13,4 +13,4 @@ class DrfRwSerializersConfig(AppConfig):
     Configuration for the drf_rw_serializers Django application.
     """
 
-    name = 'drf_rw_serializers'
+    name = "drf_rw_serializers"

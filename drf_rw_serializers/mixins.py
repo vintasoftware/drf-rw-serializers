@@ -5,18 +5,15 @@ from rest_framework.response import Response
 
 
 class UpdateModelMixin(mixins.UpdateModelMixin):
-
     def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
+        partial = kwargs.pop("partial", False)
         instance = self.get_object()
-        write_serializer = self.get_write_serializer(
-            instance, data=request.data, partial=partial)
+        write_serializer = self.get_write_serializer(instance, data=request.data, partial=partial)
         write_serializer.is_valid(raise_exception=True)
         self.perform_update(write_serializer)
 
         # pylint: disable=protected-access
-        if getattr(instance, '_prefetched_objects_cache', None) is not None:
-
+        if getattr(instance, "_prefetched_objects_cache", None) is not None:
             # If 'prefetch_related' has been applied to a queryset, we need to
             # forcibly invalidate the prefetch cache on the instance.
             instance._prefetched_objects_cache = {}
@@ -27,7 +24,6 @@ class UpdateModelMixin(mixins.UpdateModelMixin):
 
 
 class CreateModelMixin(mixins.CreateModelMixin):
-
     def create(self, request, *args, **kwargs):
         write_serializer = self.get_write_serializer(data=request.data)
         write_serializer.is_valid(raise_exception=True)
@@ -40,7 +36,6 @@ class CreateModelMixin(mixins.CreateModelMixin):
 
 
 class ListModelMixin(mixins.ListModelMixin):
-
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
 
@@ -54,7 +49,6 @@ class ListModelMixin(mixins.ListModelMixin):
 
 
 class RetrieveModelMixin(mixins.RetrieveModelMixin):
-
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_read_serializer(instance)

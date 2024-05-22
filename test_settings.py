@@ -18,23 +18,23 @@ def root(*args):
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': ':memory:',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": ":memory:",
     }
 }
 
 INSTALLED_APPS = (
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'rest_framework',
-    'example_app',
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "rest_framework",
+    "example_app",
 )
 
 LOCALE_PATHS = [
-    root('drf_rw_serializers', 'conf', 'locale'),
+    root("drf_rw_serializers", "conf", "locale"),
 ]
 
-ROOT_URLCONF = 'example_app.urls'
+ROOT_URLCONF = "example_app.urls"
 
-SECRET_KEY = 'insecure-secret-key'
+SECRET_KEY = "insecure-secret-key"
