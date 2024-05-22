@@ -6,19 +6,14 @@ Tests for the `drf-rw-serializers` mixins module.
 
 from __future__ import absolute_import, unicode_literals
 
-from django.utils import version as django_version
+from django.urls import reverse
+
 from model_bakery import baker
 
-from test_utils.base_tests import (
-    BaseTestCase, TestListRequestSuccess, TestRetrieveRequestSuccess,
-    TestCreateRequestSuccess, TestUpdateRequestSuccess)
 from example_app.serializers import OrderCreateSerializer, OrderListSerializer
-
-
-if django_version.get_complete_version() < (2, 0, 0):
-    from django.core.urlresolvers import reverse  # pylint: disable=no-name-in-module,import-error
-else:
-    from django.urls import reverse  # pylint: disable=no-name-in-module,import-error
+from test_utils.base_tests import (
+    BaseTestCase, TestCreateRequestSuccess, TestListRequestSuccess, TestRetrieveRequestSuccess, TestUpdateRequestSuccess
+)
 
 
 class OrderCreateWithMixinEndpointTests(BaseTestCase, TestCreateRequestSuccess):

@@ -63,7 +63,7 @@ Copyright (c) 2020 Vinta Serviços e Soluções Tecnológicas Ltda
     :target: https://pypi.python.org/pypi/drf-rw-serializers/
     :alt: PyPI
 
-.. |ga-badge| image:: https://github.com/vintasoftware/drf-rw-serializers/actions/workflows/config.yml/badge.svg?branch=master
+.. |ga-badge| image:: https://github.com/vintasoftware/drf-rw-serializers/actions/workflows/tests.yml/badge.svg?branch=master
     :target: https://github.com/vintasoftware/drf-rw-serializers
     :alt: GitHub Actions
 
