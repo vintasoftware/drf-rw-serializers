@@ -17,6 +17,9 @@ quote-style = "double"
 indent-style = "space"
 line-ending = "auto"
 
+[lint]
+extend-select = ["I"]
+
 [lint.isort.sections]
 django = ["django"]
 drf = ["rest_framework"]
