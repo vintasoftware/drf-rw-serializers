@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 
 from rest_framework import serializers
-from .models import Order, OrderedMeal, Meal
+
+from .models import Meal, Order, OrderedMeal
 
 
 class OrderedMealCreateSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = OrderedMeal
-        fields = ('id', 'quantity', 'meal')
+        fields = ("id", "quantity", "meal")
 
 
 class OrderCreateSerializer(serializers.ModelSerializer):
@@ -16,10 +16,10 @@ class OrderCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ('id', 'table_number', 'ordered_meals', 'total_price')
+        fields = ("id", "table_number", "ordered_meals", "total_price")
 
     def create(self, validated_data):
-        ordered_meals_dict_list = validated_data.pop('ordered_meals')
+        ordered_meals_dict_list = validated_data.pop("ordered_meals")
         instance = Order.objects.create(**validated_data)
         for ordered_meal_dict in ordered_meals_dict_list:
             instance.ordered_meals.create(**ordered_meal_dict)
@@ -27,9 +27,9 @@ class OrderCreateSerializer(serializers.ModelSerializer):
         return instance
 
     def update(self, instance, validated_data):
-        ordered_meals_dict_list = validated_data.pop('ordered_meals', None)
+        ordered_meals_dict_list = validated_data.pop("ordered_meals", None)
 
-        instance.table_number = validated_data.pop('table_number', instance.table_number)
+        instance.table_number = validated_data.pop("table_number", instance.table_number)
 
         instance.save()
 
@@ -42,10 +42,9 @@ class OrderCreateSerializer(serializers.ModelSerializer):
 
 
 class MealSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Meal
-        fields = ('id', 'name', 'price')
+        fields = ("id", "name", "price")
 
 
 class OrderedMealDetailsSerializer(serializers.ModelSerializer):
@@ -53,7 +52,7 @@ class OrderedMealDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OrderedMeal
-        fields = ('id', 'quantity', 'meal')
+        fields = ("id", "quantity", "meal")
 
 
 class OrderListSerializer(serializers.ModelSerializer):
@@ -61,4 +60,4 @@ class OrderListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ('id', 'table_number', 'ordered_meals', 'total_price')
+        fields = ("id", "table_number", "ordered_meals", "total_price")

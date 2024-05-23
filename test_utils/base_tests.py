@@ -1,5 +1,4 @@
 from django.contrib.auth import get_user_model
-
 from model_bakery import baker
 from rest_framework.test import APIClient, APITestCase
 
@@ -8,7 +7,6 @@ from example_app.serializers import OrderedMealDetailsSerializer
 
 
 class BaseTestCase(APITestCase):
-
     def setUp(self):
         self.meals = baker.make("example_app.Meal", _quantity=3)
 
@@ -25,7 +23,6 @@ class BaseTestCase(APITestCase):
 
 
 class TestListRequestSuccess(object):
-
     def test_get_serializer_class(self):
         response = self.auth_client.get(self.view_url, format="json")
         view = response.renderer_context["view"]
@@ -38,13 +35,10 @@ class TestListRequestSuccess(object):
 
         response = self.auth_client.get(self.view_url, format="json")
         self.assertEqual(response.status_code, 200)
-        self.assertCountEqual(
-            response.data, self.list_serializer_class(orders, many=True).data
-        )
+        self.assertCountEqual(response.data, self.list_serializer_class(orders, many=True).data)
 
 
 class TestRetrieveRequestSuccess(object):
-
     def test_get_serializer_class(self):
         response = self.auth_client.get(self.view_url, format="json")
         view = response.renderer_context["view"]
@@ -59,7 +53,6 @@ class TestRetrieveRequestSuccess(object):
 
 
 class TestCreateRequestSuccess(object):
-
     data = {
         "table_number": 100,
         "ordered_meals": [
@@ -91,15 +84,12 @@ class TestCreateRequestSuccess(object):
         self.assertEqual(order.table_number, self.data["table_number"])
 
         for ordered_meal_dict in self.data["ordered_meals"]:
-            ordered_meal = order.ordered_meals.filter(
-                meal__id=ordered_meal_dict["meal"]
-            ).first()
+            ordered_meal = order.ordered_meals.filter(meal__id=ordered_meal_dict["meal"]).first()
             self.assertIsNotNone(ordered_meal)
             self.assertEqual(ordered_meal.quantity, ordered_meal_dict["quantity"])
 
 
 class TestUpdateRequestSuccess(object):
-
     data = {
         "table_number": 2,
         "ordered_meals": [
@@ -133,9 +123,7 @@ class TestUpdateRequestSuccess(object):
         response = self.auth_client.put(self.view_url, self.data, format="json")
         self.object.refresh_from_db()
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(
-            response.data, self.update_out_serializer_class(self.object).data
-        )
+        self.assertEqual(response.data, self.update_out_serializer_class(self.object).data)
         self.assertEqual(self.object.table_number, self.data["table_number"])
 
         for ordered_meal_dict in self.data["ordered_meals"]:
@@ -157,14 +145,10 @@ class TestUpdateRequestSuccess(object):
         response = self.auth_client.patch(self.view_url, data, format="json")
         self.assertEqual(response.status_code, 200)
         self.object.refresh_from_db()
-        self.assertEqual(
-            response.data, self.update_out_serializer_class(self.object).data
-        )
+        self.assertEqual(response.data, self.update_out_serializer_class(self.object).data)
         self.assertEqual(self.object.table_number, data["table_number"])
         self.assertCountEqual(
-            OrderedMealDetailsSerializer(
-                self.object.ordered_meals.all(), many=True
-            ).data,
+            OrderedMealDetailsSerializer(self.object.ordered_meals.all(), many=True).data,
             old_ordered_meals,
         )
 
@@ -181,13 +165,12 @@ class TestUpdateRequestSuccess(object):
         response = self.auth_client.patch(self.view_url, data, format="json")
         self.assertEqual(response.status_code, 200)
         self.object.refresh_from_db()
-        self.assertEqual(
-            response.data, self.update_out_serializer_class(self.object).data
-        )
+        self.assertEqual(response.data, self.update_out_serializer_class(self.object).data)
         for ordered_meal_dict in data["ordered_meals"]:
             ordered_meal = self.object.ordered_meals.filter(
                 meal__id=ordered_meal_dict["meal"]
             ).first()
             self.assertIsNotNone(ordered_meal)
             self.assertEqual(ordered_meal.quantity, ordered_meal_dict["quantity"])
+        self.assertEqual(self.object.table_number, old_table_number)
         self.assertEqual(self.object.table_number, old_table_number)

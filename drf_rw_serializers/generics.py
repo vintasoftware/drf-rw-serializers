@@ -2,11 +2,15 @@
 
 from rest_framework import generics, mixins
 
-from .mixins import CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin
+from .mixins import (
+    CreateModelMixin,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+)
 
 
 class GenericAPIView(generics.GenericAPIView):
-
     def _get_serializer_class(self):
         """
         Return the class to use for the serializer.
@@ -43,9 +47,9 @@ class GenericAPIView(generics.GenericAPIView):
                     getattr(self, "read_serializer_class", None) is not None
                     or self.serializer_class is not None
                 ), (
-                    "'%s' should either include a `read_serializer_class` or `serializer_class` attribute, "
-                    "or override the `get_read_serializer_class()` or `get_serializer_class()` method."
-                    % self.__class__.__name__
+                    "'%s' should either include a `read_serializer_class` or `serializer_class` "
+                    "attribute, or override the `get_read_serializer_class()` or "
+                    "`get_serializer_class()` method." % self.__class__.__name__
                 )
                 return self.get_read_serializer_class()
             else:
@@ -53,9 +57,9 @@ class GenericAPIView(generics.GenericAPIView):
                     getattr(self, "write_serializer_class", None) is not None
                     or self.serializer_class is not None
                 ), (
-                    "'%s' should either include a `write_serializer_class` or `serializer_class` attribute, "
-                    "or override the `get_write_serializer_class()` or `get_serializer_class()` method."
-                    % self.__class__.__name__
+                    "'%s' should either include a `write_serializer_class` or `serializer_class` "
+                    "attribute, or override the `get_write_serializer_class()` or "
+                    "`get_serializer_class()` method." % self.__class__.__name__
                 )
                 return self.get_write_serializer_class()
 
@@ -106,13 +110,11 @@ class GenericAPIView(generics.GenericAPIView):
 
 
 class CreateAPIView(CreateModelMixin, GenericAPIView):
-
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
 
 class UpdateAPIView(UpdateModelMixin, GenericAPIView):
-
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
 
@@ -121,19 +123,16 @@ class UpdateAPIView(UpdateModelMixin, GenericAPIView):
 
 
 class ListAPIView(ListModelMixin, GenericAPIView):
-
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
 
 class RetrieveAPIView(RetrieveModelMixin, GenericAPIView):
-
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
 
 class ListCreateAPIView(ListModelMixin, CreateModelMixin, GenericAPIView):
-
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
@@ -142,7 +141,6 @@ class ListCreateAPIView(ListModelMixin, CreateModelMixin, GenericAPIView):
 
 
 class RetrieveDestroyAPIView(RetrieveModelMixin, mixins.DestroyModelMixin, GenericAPIView):
-
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
@@ -151,7 +149,6 @@ class RetrieveDestroyAPIView(RetrieveModelMixin, mixins.DestroyModelMixin, Gener
 
 
 class RetrieveUpdateAPIView(RetrieveModelMixin, UpdateModelMixin, GenericAPIView):
-
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
@@ -165,7 +162,6 @@ class RetrieveUpdateAPIView(RetrieveModelMixin, UpdateModelMixin, GenericAPIView
 class RetrieveUpdateDestroyAPIView(
     RetrieveModelMixin, UpdateModelMixin, mixins.DestroyModelMixin, GenericAPIView
 ):
-
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 

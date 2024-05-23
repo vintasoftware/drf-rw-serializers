@@ -8,9 +8,8 @@ from __future__ import absolute_import, unicode_literals
 
 from unittest import mock
 
-from django.utils import version as django_version
-
 import pytest
+from django.urls import reverse
 from model_bakery import baker
 
 from drf_rw_serializers import generics
@@ -22,12 +21,6 @@ from test_utils.base_tests import (
     TestRetrieveRequestSuccess,
     TestUpdateRequestSuccess,
 )
-
-
-if django_version.get_complete_version() < (2, 0, 0):
-    from django.core.urlresolvers import reverse  # pylint: disable=no-name-in-module,import-error
-else:
-    from django.urls import reverse  # pylint: disable=no-name-in-module,import-error
 
 
 class GenericAPIViewGetSerializerClassTests(BaseTestCase):
@@ -101,7 +94,6 @@ class GenericAPIViewGetWriteSerializerClassTests(BaseTestCase):
 
 
 class OrderListCreateEndpointTests(BaseTestCase, TestListRequestSuccess, TestCreateRequestSuccess):
-
     def setUp(self):
         super(OrderListCreateEndpointTests, self).setUp()
         TestCreateRequestSuccess.setUp(self)
@@ -141,7 +133,6 @@ class OrderListCreateEndpointTests(BaseTestCase, TestListRequestSuccess, TestCre
 class OrderRetrieveUpdateDestroyEndpointTests(
     BaseTestCase, TestRetrieveRequestSuccess, TestUpdateRequestSuccess
 ):
-
     def setUp(self):
         super(OrderRetrieveUpdateDestroyEndpointTests, self).setUp()
         TestUpdateRequestSuccess.setUp(self)
@@ -154,7 +145,6 @@ class OrderRetrieveUpdateDestroyEndpointTests(
 
 
 class OrderListWithoutReadSerializerEndpointTests(BaseTestCase, TestListRequestSuccess):
-
     def setUp(self):
         super(OrderListWithoutReadSerializerEndpointTests, self).setUp()
         self.view_url = reverse("list_without_read_serializer")
@@ -164,7 +154,6 @@ class OrderListWithoutReadSerializerEndpointTests(BaseTestCase, TestListRequestS
 class OrderRetrieveUpdateEndpointTests(
     BaseTestCase, TestRetrieveRequestSuccess, TestUpdateRequestSuccess
 ):
-
     def setUp(self):
         super(OrderRetrieveUpdateEndpointTests, self).setUp()
         TestUpdateRequestSuccess.setUp(self)
@@ -177,7 +166,6 @@ class OrderRetrieveUpdateEndpointTests(
 
 
 class OrderCreateWithGenericEndpointTests(BaseTestCase, TestCreateRequestSuccess):
-
     def setUp(self):
         super(OrderCreateWithGenericEndpointTests, self).setUp()
         self.view_url = reverse("create")
@@ -187,7 +175,6 @@ class OrderCreateWithGenericEndpointTests(BaseTestCase, TestCreateRequestSuccess
 
 
 class OrderUpdateWithGenericEndpointTests(BaseTestCase, TestUpdateRequestSuccess):
-
     def setUp(self):
         super(OrderUpdateWithGenericEndpointTests, self).setUp()
         TestUpdateRequestSuccess.setUp(self)
@@ -200,7 +187,6 @@ class OrderUpdateWithGenericEndpointTests(BaseTestCase, TestUpdateRequestSuccess
 
 
 class OrderListWithGenericEndpointTests(BaseTestCase, TestListRequestSuccess):
-
     def setUp(self):
         super(OrderListWithGenericEndpointTests, self).setUp()
         self.view_url = reverse("list")
@@ -208,10 +194,10 @@ class OrderListWithGenericEndpointTests(BaseTestCase, TestListRequestSuccess):
 
 
 class OrderRetrieveWithGenericEndpointTests(BaseTestCase, TestRetrieveRequestSuccess):
-
     def setUp(self):
         super(OrderRetrieveWithGenericEndpointTests, self).setUp()
         self.object = baker.make("example_app.Order")
         baker.make("example_app.OrderedMeal", order=self.object, _quantity=2)
         self.view_url = reverse("retrieve", kwargs={"pk": self.object.pk})
+        self.retrieve_serializer_class = OrderListSerializer
         self.retrieve_serializer_class = OrderListSerializer

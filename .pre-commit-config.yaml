@@ -13,15 +13,18 @@ repos:
       - id: debug-statements
       - id: detect-private-key
 
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.4.4
+    hooks:
+      # Run the linter.
+      - id: ruff
+        args: [--fix]
+      # Run the formatter.
+      - id: ruff-format
+
   - repo: local
     hooks:
-      - id: isort
-        name: isort-local
-        entry: isort
-        language: python
-        types: [python]
-        exclude: .+/(settings|migrations)/.+
-        pass_filenames: true
       - id: eslint
         name: eslint-local
         entry: npm run lint
