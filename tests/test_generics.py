@@ -14,7 +14,11 @@ import pytest
 from model_bakery import baker
 
 from drf_rw_serializers import generics
-from example_app.serializers import OrderCreateSerializer, OrderListSerializer
+from example_app.serializers import (
+    OrderCreateSerializer,
+    OrderedMealDetailsSerializer,
+    OrderListSerializer,
+)
 from test_utils.base_tests import (
     BaseTestCase,
     TestCreateRequestSuccess,
@@ -25,12 +29,28 @@ from test_utils.base_tests import (
 
 
 class GenericAPIViewGetSerializerClassTests(BaseTestCase):
-    def test_serializer_class_not_provided(self):
+    def setUp(self):
         class NoSerializerView(generics.GenericAPIView):
             pass
 
+        self.NoSerializerView = NoSerializerView
+
+        class FullSerializerView(generics.GenericAPIView):
+            serializer_class = OrderedMealDetailsSerializer
+            read_serializer_class = OrderListSerializer
+            write_serializer_class = OrderCreateSerializer
+
+        self.FullSerializerView = FullSerializerView
+
+        class RWSerializerView(generics.GenericAPIView):
+            read_serializer_class = OrderListSerializer
+            write_serializer_class = OrderCreateSerializer
+
+        self.RWSerializerView = RWSerializerView
+
+    def test_serializer_class_not_provided(self):
         with pytest.raises(AssertionError) as excinfo:
-            NoSerializerView().get_serializer_class()
+            self.NoSerializerView().get_serializer_class()
 
         self.assertEqual(
             str(excinfo.value),
@@ -41,33 +61,35 @@ class GenericAPIViewGetSerializerClassTests(BaseTestCase):
             ),
         )
 
-    def test_no_request_provided_return_serializer_class_over_rw(self):
-        class FullSerializerView(generics.GenericAPIView):
-            serializer_class = OrderListSerializer
-            read_serializer_class = OrderListSerializer
-            write_serializer_class = OrderCreateSerializer
-
-        self.assertEqual(FullSerializerView().get_serializer_class(), OrderListSerializer)
+    def test_no_request_provided(self):
+        # Return serializer_class over read_serializer_class and write_serializer_class
+        self.assertEqual(
+            self.FullSerializerView().get_serializer_class(), OrderedMealDetailsSerializer
+        )
 
     def test_get_request_provided(self):
-        class RWSerializerView(generics.GenericAPIView):
-            read_serializer_class = OrderListSerializer
-            write_serializer_class = OrderCreateSerializer
+        # Return read_serializer_class
+        self.RWSerializerView.request = mock.Mock(method="GET")
+        self.assertEqual(self.RWSerializerView().get_serializer_class(), OrderListSerializer)
 
-        RWSerializerView.request = mock.Mock(method="GET")
-
-        self.assertEqual(RWSerializerView().get_serializer_class(), OrderListSerializer)
+        # Return read_serializer_class even if serializer_class is provided
+        self.FullSerializerView.request = mock.Mock(method="GET")
+        self.assertEqual(self.FullSerializerView().get_serializer_class(), OrderListSerializer)
 
     def test_non_get_request_provided(self):
-        class RWSerializerView(generics.GenericAPIView):
-            read_serializer_class = OrderListSerializer
-            write_serializer_class = OrderCreateSerializer
-
         non_get_methods = ["POST", "PUT", "PATCH", "DELETE"]
 
+        # Return write_serializer_class
         for method in non_get_methods:
-            RWSerializerView.request = mock.Mock(method=method)
-            self.assertEqual(RWSerializerView().get_serializer_class(), OrderCreateSerializer)
+            self.RWSerializerView.request = mock.Mock(method=method)
+            self.assertEqual(self.RWSerializerView().get_serializer_class(), OrderCreateSerializer)
+
+        # Return write_serializer_class even if serializer_class is provided
+        for method in non_get_methods:
+            self.FullSerializerView.request = mock.Mock(method=method)
+            self.assertEqual(
+                self.FullSerializerView().get_serializer_class(), OrderCreateSerializer
+            )
 
 
 class GenericAPIViewGetReadSerializerClassTests(BaseTestCase):
