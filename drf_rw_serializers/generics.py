@@ -34,13 +34,14 @@ class GenericAPIView(generics.GenericAPIView):
         """
         Return the class to use for the serializer.
         Defaults to using `self.serializer_class`.
+        If the request method is GET, it tries to use `self.read_serializer_class`.
+        If the request method is not GET, it tries to use `self.write_serializer_class`.
+        If the specific serializer class for the request method is not set, it falls back to
+        `self.serializer_class`.
         You may want to override this if you need to provide different
         serializations depending on the incoming request.
         (Eg. admins get full serialization, others get basic serialization)
         """
-        if self.serializer_class is not None:
-            return self.serializer_class
-
         if hasattr(self, "request"):
             if self.request.method in ["GET"]:
                 assert (

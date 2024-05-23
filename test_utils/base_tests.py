@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
-from model_bakery import baker
+
 from rest_framework.test import APIClient, APITestCase
+
+from model_bakery import baker
 
 from example_app.models import Order
 from example_app.serializers import OrderedMealDetailsSerializer

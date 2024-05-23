@@ -41,13 +41,33 @@ class GenericAPIViewGetSerializerClassTests(BaseTestCase):
             ),
         )
 
-    def test_return_serializer_class_over_rw(self):
+    def test_no_request_provided_return_serializer_class_over_rw(self):
         class SerializerClass(generics.GenericAPIView):
             serializer_class = OrderListSerializer
             read_serializer_class = OrderListSerializer
             write_serializer_class = OrderCreateSerializer
 
         self.assertEqual(SerializerClass().get_serializer_class(), OrderListSerializer)
+
+    def test_get_request_provided(self):
+        class RWSerializerClass(generics.GenericAPIView):
+            read_serializer_class = OrderListSerializer
+            write_serializer_class = OrderCreateSerializer
+
+        RWSerializerClass.request = mock.Mock(method="GET")
+
+        self.assertEqual(RWSerializerClass().get_serializer_class(), OrderListSerializer)
+
+    def test_non_get_request_provided(self):
+        class RWSerializerClass(generics.GenericAPIView):
+            read_serializer_class = OrderListSerializer
+            write_serializer_class = OrderCreateSerializer
+
+        non_get_methods = ["POST", "PUT", "PATCH", "DELETE"]
+
+        for method in non_get_methods:
+            RWSerializerClass.request = mock.Mock(method=method)
+            self.assertEqual(RWSerializerClass().get_serializer_class(), OrderCreateSerializer)
 
 
 class GenericAPIViewGetReadSerializerClassTests(BaseTestCase):
@@ -102,33 +122,6 @@ class OrderListCreateEndpointTests(BaseTestCase, TestListRequestSuccess, TestCre
         self.list_serializer_class = OrderListSerializer
         self.create_in_serializer_class = OrderCreateSerializer
         self.create_out_serializer_class = OrderListSerializer
-
-    # def test_get_serializer_class(self):
-    #     # GET request
-    #     response = self.auth_client.get(self.view_url, format="json")
-    #     view = response.renderer_context["view"]
-    #     self.assertEqual(view.get_serializer_class(), OrderListSerializer)
-
-    #     # POST request
-    #     response = self.auth_client.post(
-    #         self.view_url,
-    #         {
-    #             "table_number": 100,
-    #             "ordered_meals": [
-    #                 {
-    #                     "quantity": 1,
-    #                     "meal": self.meals[0].id,
-    #                 },
-    #                 {
-    #                     "quantity": 2,
-    #                     "meal": self.meals[1].id,
-    #                 },
-    #             ],
-    #         },
-    #         format="json",
-    #     )
-    #     view = response.renderer_context["view"]
-    #     self.assertEqual(view.get_serializer_class(), OrderCreateSerializer)
 
 
 class OrderRetrieveUpdateDestroyEndpointTests(
