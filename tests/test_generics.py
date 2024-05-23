@@ -26,59 +26,59 @@ from test_utils.base_tests import (
 
 class GenericAPIViewGetSerializerClassTests(BaseTestCase):
     def test_serializer_class_not_provided(self):
-        class NoSerializerClass(generics.GenericAPIView):
+        class NoSerializerView(generics.GenericAPIView):
             pass
 
         with pytest.raises(AssertionError) as excinfo:
-            NoSerializerClass().get_serializer_class()
+            NoSerializerView().get_serializer_class()
 
         self.assertEqual(
             str(excinfo.value),
             (
-                "'NoSerializerClass' should either include one of `serializer_class` "
+                "'NoSerializerView' should either include one of `serializer_class` "
                 "and `read_serializer_class` attribute, or override one of the "
                 "`get_serializer_class()`, `get_read_serializer_class()` method."
             ),
         )
 
     def test_no_request_provided_return_serializer_class_over_rw(self):
-        class SerializerClass(generics.GenericAPIView):
+        class FullSerializerView(generics.GenericAPIView):
             serializer_class = OrderListSerializer
             read_serializer_class = OrderListSerializer
             write_serializer_class = OrderCreateSerializer
 
-        self.assertEqual(SerializerClass().get_serializer_class(), OrderListSerializer)
+        self.assertEqual(FullSerializerView().get_serializer_class(), OrderListSerializer)
 
     def test_get_request_provided(self):
-        class RWSerializerClass(generics.GenericAPIView):
+        class RWSerializerView(generics.GenericAPIView):
             read_serializer_class = OrderListSerializer
             write_serializer_class = OrderCreateSerializer
 
-        RWSerializerClass.request = mock.Mock(method="GET")
+        RWSerializerView.request = mock.Mock(method="GET")
 
-        self.assertEqual(RWSerializerClass().get_serializer_class(), OrderListSerializer)
+        self.assertEqual(RWSerializerView().get_serializer_class(), OrderListSerializer)
 
     def test_non_get_request_provided(self):
-        class RWSerializerClass(generics.GenericAPIView):
+        class RWSerializerView(generics.GenericAPIView):
             read_serializer_class = OrderListSerializer
             write_serializer_class = OrderCreateSerializer
 
         non_get_methods = ["POST", "PUT", "PATCH", "DELETE"]
 
         for method in non_get_methods:
-            RWSerializerClass.request = mock.Mock(method=method)
-            self.assertEqual(RWSerializerClass().get_serializer_class(), OrderCreateSerializer)
+            RWSerializerView.request = mock.Mock(method=method)
+            self.assertEqual(RWSerializerView().get_serializer_class(), OrderCreateSerializer)
 
 
 class GenericAPIViewGetReadSerializerClassTests(BaseTestCase):
     def test_read_serializer_class_not_provided(self):
-        class NoReadSerializerClass(generics.GenericAPIView):
+        class NoReadSerializerView(generics.GenericAPIView):
             pass
 
         with mock.patch.object(
-            NoReadSerializerClass, "_get_serializer_class"
+            NoReadSerializerView, "_get_serializer_class"
         ) as mock__get_serializer_class:
-            NoReadSerializerClass().get_read_serializer_class()
+            NoReadSerializerView().get_read_serializer_class()
 
         mock__get_serializer_class.assert_called_once()
 
@@ -94,13 +94,13 @@ class GenericAPIViewGetReadSerializerClassTests(BaseTestCase):
 
 class GenericAPIViewGetWriteSerializerClassTests(BaseTestCase):
     def test_write_serializer_class_not_provided(self):
-        class NoWriteSerializerClass(generics.GenericAPIView):
+        class NoWriteSerializerView(generics.GenericAPIView):
             pass
 
         with mock.patch.object(
-            NoWriteSerializerClass, "_get_serializer_class"
+            NoWriteSerializerView, "_get_serializer_class"
         ) as mock__get_serializer_class:
-            NoWriteSerializerClass().get_write_serializer_class()
+            NoWriteSerializerView().get_write_serializer_class()
 
         mock__get_serializer_class.assert_called_once()
 
