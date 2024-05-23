@@ -19,7 +19,6 @@ from .views import (
     OrderViewset,
 )
 
-
 urlpatterns = [
     path(
         "orders-list-without-read-serializer/",
