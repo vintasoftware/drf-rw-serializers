@@ -8,8 +8,9 @@ from __future__ import absolute_import, unicode_literals
 
 from unittest import mock
 
-import pytest
 from django.urls import reverse
+
+import pytest
 from model_bakery import baker
 
 from drf_rw_serializers import generics
@@ -40,13 +41,13 @@ class GenericAPIViewGetSerializerClassTests(BaseTestCase):
             ),
         )
 
-    def test_prioritize_serializer_class(self):
-        class PrioritizeSerializerClass(generics.GenericAPIView):
+    def test_return_serializer_class_over_rw(self):
+        class SerializerClass(generics.GenericAPIView):
             serializer_class = OrderListSerializer
             read_serializer_class = OrderListSerializer
             write_serializer_class = OrderCreateSerializer
 
-        self.assertEqual(PrioritizeSerializerClass().get_serializer_class(), OrderListSerializer)
+        self.assertEqual(SerializerClass().get_serializer_class(), OrderListSerializer)
 
 
 class GenericAPIViewGetReadSerializerClassTests(BaseTestCase):
