@@ -13,4 +13,4 @@ class ExampleAppConfig(AppConfig):
     Configuration for the example_app Django application.
     """
 
-    name = 'example_app'
+    name = "example_app"
