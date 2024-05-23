@@ -200,4 +200,3 @@ class OrderRetrieveWithGenericEndpointTests(BaseTestCase, TestRetrieveRequestSuc
         baker.make("example_app.OrderedMeal", order=self.object, _quantity=2)
         self.view_url = reverse("retrieve", kwargs={"pk": self.object.pk})
         self.retrieve_serializer_class = OrderListSerializer
-        self.retrieve_serializer_class = OrderListSerializer

@@ -173,4 +173,3 @@ class TestUpdateRequestSuccess(object):
             self.assertIsNotNone(ordered_meal)
             self.assertEqual(ordered_meal.quantity, ordered_meal_dict["quantity"])
         self.assertEqual(self.object.table_number, old_table_number)
-        self.assertEqual(self.object.table_number, old_table_number)
