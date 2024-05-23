@@ -16,3 +16,18 @@ target-version = "py38"
 quote-style = "double"
 indent-style = "space"
 line-ending = "auto"
+
+[lint.isort.sections]
+django = ["django"]
+drf = ["rest_framework"]
+
+[lint.isort]
+section-order = [
+  "future",
+  "standard-library",
+  "django",
+  "drf",
+  "third-party",
+  "first-party",
+  "local-folder",
+]
