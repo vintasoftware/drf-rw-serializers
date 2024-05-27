@@ -1,6 +1,0 @@
-# Requirements for documentation validation
-
-django>=4.2,<5.1
-doc8                      # reStructuredText style checker
-readme_renderer           # Validates README.rst for usage on PyPI
-Sphinx                    # Documentation builder

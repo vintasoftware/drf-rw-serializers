@@ -41,6 +41,7 @@ setup(
         "Framework ones adding separated serializers for read and write operations"
     ),
     long_description=README + "\n\n" + CHANGELOG,
+    long_description_content_type="text/x-rst",
     author="vintasoftware",
     author_email="contact@vinta.com.br",
     url="https://github.com/vintasoftware/drf-rw-serializers",

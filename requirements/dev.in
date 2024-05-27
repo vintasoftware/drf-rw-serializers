@@ -1,9 +1,0 @@
-# Additional requirements for development of this application
-
-django>=4.2,<5.1
-diff-cover                # Changeset diff test coverage
-pip-tools                 # Requirements file management
-tox                       # virtualenv management for tests
-tox-battery               # Makes tox aware of requirements file changes
-twine                     # Utility for PyPI package uploads
-wheel                     # For generation of wheels for PyPI

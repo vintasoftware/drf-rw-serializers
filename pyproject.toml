@@ -1,0 +1,78 @@
+[tool.poetry]
+name = "drf-rw-serializers"
+version = "1.1.1"
+description = "Generic views, viewsets and mixins that extend the Django REST Framework ones adding separated serializers for read and write operations"
+authors = ["Vinta Software <contact@vinta.com.br>"]
+license = "MIT"
+readme = "README.rst"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+djangorestframework = "^3.15.1"
+
+
+[tool.poetry.group.dev.dependencies]
+django = "^4.2"
+tox = "^4.15.0"
+wheel = "^0.43.0"
+docutils = "^0.20.1"
+twine = "^5.1.0"
+ruff = "^0.4.5"
+prospector = "^1.10.3"
+
+
+[tool.poetry.group.test.dependencies]
+pytest-cov = "^5.0.0"
+pytest-django = "^4.8.0"
+model-bakery = "^1.18.0"
+pytest = "^8.2.1"
+
+
+[tool.poetry.group.docs.dependencies]
+django = "^4.2"
+doc8 = "^1.1.1"
+readme-renderer = "^43.0"
+sphinx = "7.1.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+exclude = [
+    "env",
+    "venv",
+    ".pyenv",
+    ".pytest_cache",
+    "*/__pycache__/*",
+    "*/migrations/*",
+    "docs",
+]
+line-length = 100
+target-version = "py38"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+[tool.ruff.lint]
+extend-select = [
+    # isort
+    "I",
+]
+
+[tool.ruff.lint.isort.sections]
+django = ["django"]
+drf = ["rest_framework"]
+
+[tool.ruff.lint.isort]
+section-order = [
+  "future",
+  "standard-library",
+  "django",
+  "drf",
+  "third-party",
+  "first-party",
+  "local-folder",
+]
