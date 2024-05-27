@@ -25,6 +25,11 @@ class BaseTestCase(APITestCase):
 
 
 class TestListRequestSuccess(object):
+    def test_get_serializer_class(self):
+        response = self.auth_client.get(self.view_url, format="json")
+        view = response.renderer_context["view"]
+        self.assertEqual(view.get_serializer_class(), self.list_serializer_class)
+
     def test_list_request_success(self):
         orders = baker.make("example_app.Order", _quantity=3)
         for order in orders:
@@ -36,6 +41,11 @@ class TestListRequestSuccess(object):
 
 
 class TestRetrieveRequestSuccess(object):
+    def test_get_serializer_class(self):
+        response = self.auth_client.get(self.view_url, format="json")
+        view = response.renderer_context["view"]
+        self.assertEqual(view.get_serializer_class(), self.retrieve_serializer_class)
+
     def test_list_request_success(self):
         order = baker.make("example_app.Order")
         baker.make("example_app.OrderedMeal", order=order, _quantity=2)
@@ -45,54 +55,80 @@ class TestRetrieveRequestSuccess(object):
 
 
 class TestCreateRequestSuccess(object):
+    data = {
+        "table_number": 100,
+        "ordered_meals": [
+            {
+                "quantity": 1,
+                "meal": None,
+            },
+            {
+                "quantity": 2,
+                "meal": None,
+            },
+        ],
+    }
+
+    def setUp(self):
+        self.data["ordered_meals"][0]["meal"] = self.meals[0].id
+        self.data["ordered_meals"][1]["meal"] = self.meals[1].id
+
+    def test_get_serializer_class(self):
+        response = self.auth_client.post(self.view_url, self.data, format="json")
+        view = response.renderer_context["view"]
+        self.assertEqual(view.get_serializer_class(), self.create_in_serializer_class)
+
     def test_create_request_success(self):
-        data = {
-            "table_number": 100,
-            "ordered_meals": [
-                {
-                    "quantity": 1,
-                    "meal": self.meals[0].id,
-                },
-                {
-                    "quantity": 2,
-                    "meal": self.meals[1].id,
-                },
-            ],
-        }
-        response = self.auth_client.post(self.view_url, data, format="json")
+        response = self.auth_client.post(self.view_url, self.data, format="json")
         self.assertEqual(response.status_code, 201)
         order = Order.objects.get(id=response.data["id"])
         self.assertEqual(response.data, self.create_out_serializer_class(order).data)
-        self.assertEqual(order.table_number, data["table_number"])
+        self.assertEqual(order.table_number, self.data["table_number"])
 
-        for ordered_meal_dict in data["ordered_meals"]:
+        for ordered_meal_dict in self.data["ordered_meals"]:
             ordered_meal = order.ordered_meals.filter(meal__id=ordered_meal_dict["meal"]).first()
             self.assertIsNotNone(ordered_meal)
             self.assertEqual(ordered_meal.quantity, ordered_meal_dict["quantity"])
 
 
 class TestUpdateRequestSuccess(object):
+    data = {
+        "table_number": 2,
+        "ordered_meals": [
+            {
+                "quantity": 10,
+                "meal": None,
+            },
+            {
+                "quantity": 20,
+                "meal": None,
+            },
+        ],
+    }
+
+    def setUp(self):
+        self.data["ordered_meals"][0]["meal"] = self.meals[0].id
+        self.data["ordered_meals"][1]["meal"] = self.meals[1].id
+
+    def test_get_serializer_class(self):
+        # PUT request
+        response = self.auth_client.put(self.view_url, self.data, format="json")
+        view = response.renderer_context["view"]
+        self.assertEqual(view.get_serializer_class(), self.update_in_serializer_class)
+
+        # PATCH request
+        response = self.auth_client.patch(self.view_url, self.data, format="json")
+        view = response.renderer_context["view"]
+        self.assertEqual(view.get_serializer_class(), self.update_in_serializer_class)
+
     def test_update_request_success(self):
-        data = {
-            "table_number": 2,
-            "ordered_meals": [
-                {
-                    "quantity": 10,
-                    "meal": self.meals[0].id,
-                },
-                {
-                    "quantity": 20,
-                    "meal": self.meals[1].id,
-                },
-            ],
-        }
-        response = self.auth_client.put(self.view_url, data, format="json")
+        response = self.auth_client.put(self.view_url, self.data, format="json")
         self.object.refresh_from_db()
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data, self.update_out_serializer_class(self.object).data)
-        self.assertEqual(self.object.table_number, data["table_number"])
+        self.assertEqual(self.object.table_number, self.data["table_number"])
 
-        for ordered_meal_dict in data["ordered_meals"]:
+        for ordered_meal_dict in self.data["ordered_meals"]:
             ordered_meal = self.object.ordered_meals.filter(
                 meal__id=ordered_meal_dict["meal"]
             ).first()
