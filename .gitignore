@@ -63,15 +63,12 @@ docs/modules.rst
 docs/drf_rw_serializers.rst
 docs/drf_rw_serializers.*.rst
 
-# Private requirements
-requirements/private.in
-requirements/private.txt
-
 # tox environment temporary artifacts
 tests/__init__.py
 
 # Development task artifacts
 *.db
+Pipfile
 
 # Visual Studio Code config files
 .vscode
