@@ -6,13 +6,32 @@ Change Log
    in this file.  It adheres to the structure of http://keepachangelog.com/ ,
    but in reStructuredText instead of Markdown (for ease of incorporation into
    Sphinx documentation and the PyPI description).
-   
+
    This project adheres to Semantic Versioning (http://semver.org/).
 
 .. There should always be an "Unreleased" section for changes pending release.
 
 Unreleased
 ~~~~~~~~~~
+
+[1.2.0] - 2024-05-27
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Fixed
+_____
+* Fix a bug in the `get_serializer_class` method to return the appropriate serializer based on the request method, if any.
+
+Removed
+_______
+* Drop support to Django 1.11
+* Drop support to Django 2.0
+* Drop support to Django 2.1
+* Drop support to Django 2.2
+* Drop support to Django 3.0
+* Drop support to Django 3.1
+* Drop support to Django 3.2
+* Drop support to Django 4.0
+* Drop support to Django 4.1
+* Drop support to Python 3.7
 
 [1.1.1] - 2024-02-07
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
