@@ -43,7 +43,7 @@ class GenericAPIView(generics.GenericAPIView):
         (Eg. admins get full serialization, others get basic serialization)
         """
         if hasattr(self, "request"):
-            if self.request.method in ["GET"]:
+            if self.request.method in ["GET", "HEAD", "OPTIONS", "TRACE"]:
                 assert (
                     getattr(self, "read_serializer_class", None) is not None
                     or self.serializer_class is not None
@@ -53,7 +53,7 @@ class GenericAPIView(generics.GenericAPIView):
                     "`get_serializer_class()` method." % self.__class__.__name__
                 )
                 return self.get_read_serializer_class()
-            else:
+            elif self.request.method in ["POST", "PUT", "PATCH", "DELETE"]:
                 assert (
                     getattr(self, "write_serializer_class", None) is not None
                     or self.serializer_class is not None

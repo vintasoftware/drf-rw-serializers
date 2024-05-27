@@ -67,29 +67,46 @@ class GenericAPIViewGetSerializerClassTests(BaseTestCase):
             self.FullSerializerView().get_serializer_class(), OrderedMealDetailsSerializer
         )
 
-    def test_get_request_provided(self):
+    def test_read_request_method_provided(self):
+        read_methods = ["GET", "HEAD", "OPTIONS", "TRACE"]
+
         # Return read_serializer_class
-        self.RWSerializerView.request = mock.Mock(method="GET")
-        self.assertEqual(self.RWSerializerView().get_serializer_class(), OrderListSerializer)
+        for method in read_methods:
+            self.RWSerializerView.request = mock.Mock(method=method)
+            self.assertEqual(self.RWSerializerView().get_serializer_class(), OrderListSerializer)
 
         # Return read_serializer_class even if serializer_class is provided
-        self.FullSerializerView.request = mock.Mock(method="GET")
-        self.assertEqual(self.FullSerializerView().get_serializer_class(), OrderListSerializer)
+        for method in read_methods:
+            self.FullSerializerView.request = mock.Mock(method=method)
+            self.assertEqual(self.FullSerializerView().get_serializer_class(), OrderListSerializer)
 
-    def test_non_get_request_provided(self):
-        non_get_methods = ["POST", "PUT", "PATCH", "DELETE"]
+    def test_write_request_method_provided(self):
+        write_methods = ["POST", "PUT", "PATCH", "DELETE"]
 
         # Return write_serializer_class
-        for method in non_get_methods:
+        for method in write_methods:
             self.RWSerializerView.request = mock.Mock(method=method)
             self.assertEqual(self.RWSerializerView().get_serializer_class(), OrderCreateSerializer)
 
         # Return write_serializer_class even if serializer_class is provided
-        for method in non_get_methods:
+        for method in write_methods:
             self.FullSerializerView.request = mock.Mock(method=method)
             self.assertEqual(
                 self.FullSerializerView().get_serializer_class(), OrderCreateSerializer
             )
+
+    def test_non_read_write_request_method_provided(self):
+        non_read_write_method = "CONNECT"
+
+        # Return default serializer_class
+        self.RWSerializerView.request = mock.Mock(method=non_read_write_method)
+        self.assertIsNone(self.RWSerializerView().get_serializer_class())
+
+        # Return default serializer_class even if read/write serializer classes are provided
+        self.FullSerializerView.request = mock.Mock(method=non_read_write_method)
+        self.assertEqual(
+            self.FullSerializerView().get_serializer_class(), OrderedMealDetailsSerializer
+        )
 
 
 class GenericAPIViewGetReadSerializerClassTests(BaseTestCase):
