@@ -53,7 +53,8 @@ class GenericAPIView(generics.GenericAPIView):
                     "`get_serializer_class()` method." % self.__class__.__name__
                 )
                 return self.get_read_serializer_class()
-            elif self.request.method in ["POST", "PUT", "PATCH", "DELETE"]:
+
+            if self.request.method in ["POST", "PUT", "PATCH", "DELETE"]:
                 assert (
                     getattr(self, "write_serializer_class", None) is not None
                     or self.serializer_class is not None

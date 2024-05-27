@@ -19,6 +19,7 @@ docutils = "^0.20.1"
 twine = "^5.1.0"
 ruff = "^0.4.5"
 prospector = "^1.10.3"
+coverage = "^7.5.2"
 
 
 [tool.poetry.group.test.dependencies]
@@ -40,13 +41,13 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
 exclude = [
-    "env",
-    "venv",
-    ".pyenv",
-    ".pytest_cache",
-    "*/__pycache__/*",
-    "*/migrations/*",
-    "docs",
+  "env",
+  "venv",
+  ".pyenv",
+  ".pytest_cache",
+  "*/__pycache__/*",
+  "*/migrations/*",
+  "docs",
 ]
 line-length = 100
 target-version = "py38"
@@ -58,8 +59,8 @@ line-ending = "auto"
 
 [tool.ruff.lint]
 extend-select = [
-    # isort
-    "I",
+  # isort
+  "I",
 ]
 
 [tool.ruff.lint.isort.sections]
