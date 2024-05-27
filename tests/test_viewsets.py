@@ -22,7 +22,7 @@ from test_utils.base_tests import (
 
 class OrderViewsetListCreateTests(BaseTestCase, TestListRequestSuccess, TestCreateRequestSuccess):
     def setUp(self):
-        super(OrderViewsetListCreateTests, self).setUp()
+        super().setUp()
         self.view_url = reverse("viewset_list_create")
         self.list_serializer_class = OrderListSerializer
         self.create_in_serializer_class = OrderCreateSerializer
@@ -33,7 +33,7 @@ class OrderViewsetRetrieveUpdateDestroyTests(
     BaseTestCase, TestRetrieveRequestSuccess, TestUpdateRequestSuccess
 ):
     def setUp(self):
-        super(OrderViewsetRetrieveUpdateDestroyTests, self).setUp()
+        super().setUp()
         self.object = baker.make("example_app.Order")
         baker.make("example_app.OrderedMeal", order=self.object, _quantity=2)
         self.view_url = reverse("viewset_retrieve_update_destroy", kwargs={"pk": self.object.pk})

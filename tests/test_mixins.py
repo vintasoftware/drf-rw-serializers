@@ -22,7 +22,7 @@ from test_utils.base_tests import (
 
 class OrderCreateWithMixinEndpointTests(BaseTestCase, TestCreateRequestSuccess):
     def setUp(self):
-        super(OrderCreateWithMixinEndpointTests, self).setUp()
+        super().setUp()
         self.view_url = reverse("create_mixin")
         self.list_serializer_class = OrderListSerializer
         self.create_in_serializer_class = OrderCreateSerializer
@@ -31,7 +31,7 @@ class OrderCreateWithMixinEndpointTests(BaseTestCase, TestCreateRequestSuccess):
 
 class OrderUpdateWithMixinEndpointTests(BaseTestCase, TestUpdateRequestSuccess):
     def setUp(self):
-        super(OrderUpdateWithMixinEndpointTests, self).setUp()
+        super().setUp()
         self.object = baker.make("example_app.Order")
         baker.make("example_app.OrderedMeal", order=self.object, _quantity=2)
         self.view_url = reverse("update_mixin", kwargs={"pk": self.object.pk})
@@ -42,14 +42,14 @@ class OrderUpdateWithMixinEndpointTests(BaseTestCase, TestUpdateRequestSuccess):
 
 class OrderListWithMixinEndpointTests(BaseTestCase, TestListRequestSuccess):
     def setUp(self):
-        super(OrderListWithMixinEndpointTests, self).setUp()
+        super().setUp()
         self.view_url = reverse("list_mixin")
         self.list_serializer_class = OrderListSerializer
 
 
 class OrderRetrieveWithMixinEndpointTests(BaseTestCase, TestRetrieveRequestSuccess):
     def setUp(self):
-        super(OrderRetrieveWithMixinEndpointTests, self).setUp()
+        super().setUp()
         self.object = baker.make("example_app.Order")
         baker.make("example_app.OrderedMeal", order=self.object, _quantity=2)
         self.view_url = reverse("retrieve_mixin", kwargs={"pk": self.object.pk})
