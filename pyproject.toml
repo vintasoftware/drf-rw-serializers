@@ -6,6 +6,13 @@ authors = ["Vinta Software <contact@vinta.com.br>"]
 license = "MIT"
 readme = "README.rst"
 
+[tool.poetry.urls]
+"Homepage" = "https://github.com/vintasoftware/drf-rw-serializers"
+"Documentation" = "https://drf-rw-serializers.readthedocs.io"
+"Bug Tracker" = "https://github.com/vintasoftware/drf-rw-serializers/issues"
+"Source" = "https://github.com/vintasoftware/drf-rw-serializers/"
+"Changelog" = "https://github.com/vintasoftware/drf-rw-serializers/blob/main/CHANGELOG.rst"
+
 [tool.poetry.dependencies]
 python = "^3.8"
 djangorestframework = "^3.15.1"
