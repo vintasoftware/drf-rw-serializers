@@ -68,10 +68,10 @@ selfcheck: ## check that the Makefile is well-formed
 	@echo "The Makefile is well-formed."
 
 release: clean ## package and upload a release
-	python setup.py sdist
-	python setup.py bdist_wheel
-	twine upload dist/*
+	poetry build
+	poetry run twine check dist/*
+	poetry run twine upload dist/*
 
 sdist: clean ## package
-	python setup.py sdist
+	poetry build
 	ls -l dist
