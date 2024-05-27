@@ -37,7 +37,7 @@ coverage: clean ## generate and view HTML coverage report
 docs: ## generate Sphinx HTML documentation, including API docs
 	rm -f docs/drf-rw-serializers.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ drf_rw_serializers
+	poetry run sphinx-apidoc -o docs/ drf_rw_serializers
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html
