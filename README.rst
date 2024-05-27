@@ -27,14 +27,14 @@ How To Contribute
 
 Contributions are very welcome.
 
-Please read `How To Contribute <https://github.com/vintasoftware/drf-rw-serializers/blob/master/CONTRIBUTING.rst>`_ for details.
+Please read `How To Contribute <https://github.com/vintasoftware/drf-rw-serializers/blob/main/CONTRIBUTING.rst>`_ for details.
 
 PR description template should be automatically applied if you are sending PR
 from github interface; otherwise you can find it it at
-`PULL_REQUEST_TEMPLATE.md <https://github.com/vintasoftware/drf-rw-serializers/blob/master/.github/PULL_REQUEST_TEMPLATE.md>`_
+`PULL_REQUEST_TEMPLATE.md <https://github.com/vintasoftware/drf-rw-serializers/blob/main/.github/PULL_REQUEST_TEMPLATE.md>`_
 
 Issue report template should be automatically applied if you are sending it
-from github UI as well; otherwise you can find it at `ISSUE_TEMPLATE.md <https://github.com/vintasoftware/drf-rw-serializers/blob/master/.github/ISSUE_TEMPLATE.md>`_
+from github UI as well; otherwise you can find it at `ISSUE_TEMPLATE.md <https://github.com/vintasoftware/drf-rw-serializers/blob/main/.github/ISSUE_TEMPLATE.md>`_
 
 Reporting Security Issues
 -------------------------
@@ -63,12 +63,12 @@ Copyright (c) 2020 Vinta Serviços e Soluções Tecnológicas Ltda
     :target: https://pypi.python.org/pypi/drf-rw-serializers/
     :alt: PyPI
 
-.. |ga-badge| image:: https://github.com/vintasoftware/drf-rw-serializers/actions/workflows/tests.yml/badge.svg?branch=master
+.. |ga-badge| image:: https://github.com/vintasoftware/drf-rw-serializers/actions/workflows/tests.yml/badge.svg?branch=main
     :target: https://github.com/vintasoftware/drf-rw-serializers
     :alt: GitHub Actions
 
-.. |codecov-badge| image:: http://codecov.io/github/vintasoftware/drf-rw-serializers/coverage.svg?branch=master
-    :target: http://codecov.io/github/vintasoftware/drf-rw-serializers?branch=master
+.. |codecov-badge| image:: http://codecov.io/github/vintasoftware/drf-rw-serializers/coverage.svg?branch=main
+    :target: http://codecov.io/github/vintasoftware/drf-rw-serializers?branch=main
     :alt: Codecov
 
 .. |doc-badge| image:: https://readthedocs.org/projects/drf-rw-serializers/badge/?version=latest
@@ -80,5 +80,5 @@ Copyright (c) 2020 Vinta Serviços e Soluções Tecnológicas Ltda
     :alt: Supported Python versions
 
 .. |license-badge| image:: https://img.shields.io/github/license/vintasoftware/drf-rw-serializers.svg
-    :target: https://github.com/vintasoftware/drf-rw-serializers/blob/master/LICENSE.txt
+    :target: https://github.com/vintasoftware/drf-rw-serializers/blob/main/LICENSE.txt
     :alt: License
