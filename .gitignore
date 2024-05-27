@@ -68,7 +68,6 @@ tests/__init__.py
 
 # Development task artifacts
 *.db
-Pipfile
 
 # Visual Studio Code config files
 .vscode
