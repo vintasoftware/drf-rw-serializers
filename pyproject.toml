@@ -19,6 +19,7 @@ docutils = "^0.20.1"
 twine = "^5.1.0"
 ruff = "^0.4.5"
 prospector = "^1.10.3"
+coverage = "^7.5.2"
 
 
 [tool.poetry.group.test.dependencies]
