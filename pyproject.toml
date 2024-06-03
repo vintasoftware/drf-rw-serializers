@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "drf-rw-serializers"
-version = "1.2.0"
+version = "1.3.0"
 description = "Generic views, viewsets and mixins that extend the Django REST Framework ones adding separated serializers for read and write operations"
 authors = ["Vinta Software <contact@vinta.com.br>"]
 license = "MIT"
@@ -15,7 +15,7 @@ readme = "README.rst"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-djangorestframework = "^3.15.1"
+djangorestframework = "^3.14.0"
 
 
 [tool.poetry.group.dev.dependencies]
