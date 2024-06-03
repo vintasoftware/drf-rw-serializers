@@ -49,7 +49,10 @@ setup(
         "drf_rw_serializers",
     ],
     include_package_data=True,
-    install_requires=["Django>=4.2,<6"],
+    install_requires=[
+        "Django>=4.2,<6",
+        "djangorestframework>=3.14,<4",
+    ],
     license="MIT",
     zip_safe=False,
     keywords="Django REST Framework, Serializers, REST, API, Django",
