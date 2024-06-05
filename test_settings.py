@@ -38,3 +38,5 @@ LOCALE_PATHS = [
 ROOT_URLCONF = "example_app.urls"
 
 SECRET_KEY = "insecure-secret-key"
+
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
