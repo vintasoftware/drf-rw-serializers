@@ -36,8 +36,8 @@ class GenericAPIView(generics.GenericAPIView):
                     "attribute, or override the `get_read_serializer_class()` or "
                     "`get_serializer_class()` method." % self.__class__.__name__
                 )
-                # `use_serializer_class` is used to prevent a `RecursionError`
-                return self.get_read_serializer_class(use_serializer_class=True)
+                # `default_to_serializer_class` is used to prevent a `RecursionError`
+                return self.get_read_serializer_class(default_to_serializer_class=True)
 
             if self.request.method in ["POST", "PUT", "PATCH", "DELETE"]:
                 assert (
@@ -48,8 +48,8 @@ class GenericAPIView(generics.GenericAPIView):
                     "attribute, or override the `get_write_serializer_class()` or "
                     "`get_serializer_class()` method." % self.__class__.__name__
                 )
-                # `use_serializer_class` is used to prevent a `RecursionError`
-                return self.get_write_serializer_class(use_serializer_class=True)
+                # `default_to_serializer_class` is used to prevent a `RecursionError`
+                return self.get_write_serializer_class(default_to_serializer_class=True)
 
         assert (
             self.serializer_class is not None
@@ -70,7 +70,7 @@ class GenericAPIView(generics.GenericAPIView):
         kwargs["context"] = self.get_serializer_context()
         return serializer_class(*args, **kwargs)
 
-    def get_read_serializer_class(self, use_serializer_class: bool = False):
+    def get_read_serializer_class(self, default_to_serializer_class: bool = False):
         """
         Return the class to use for the serializer.
         Defaults to using `self.read_serializer_class`.
@@ -81,7 +81,7 @@ class GenericAPIView(generics.GenericAPIView):
         (Eg. admins get full serialization, others get basic serialization)
         """
         if getattr(self, "read_serializer_class", None) is None:
-            if use_serializer_class:
+            if default_to_serializer_class:
                 return self.serializer_class
 
             return self.get_serializer_class()
@@ -97,7 +97,7 @@ class GenericAPIView(generics.GenericAPIView):
         kwargs["context"] = self.get_serializer_context()
         return serializer_class(*args, **kwargs)
 
-    def get_write_serializer_class(self, use_serializer_class: bool = False):
+    def get_write_serializer_class(self, default_to_serializer_class: bool = False):
         """
         Return the class to use for the serializer.
         Defaults to using `self.write_serializer_class`.
@@ -108,7 +108,7 @@ class GenericAPIView(generics.GenericAPIView):
         (Eg. admins can send extra fields, others cannot)
         """
         if getattr(self, "write_serializer_class", None) is None:
-            if use_serializer_class:
+            if default_to_serializer_class:
                 return self.serializer_class
 
             return self.get_serializer_class()
