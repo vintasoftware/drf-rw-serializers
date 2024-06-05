@@ -14,6 +14,13 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[1.4.0] - 2024-06-05
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Fixed
+_____
+* Fix a regression in the `get_read_serializer_class` and `get_write_serializer_class`
+methods to return `get_serializer_class` as default.
+
 [1.3.0] - 2024-06-03
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Fixed
