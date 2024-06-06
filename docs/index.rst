@@ -14,6 +14,7 @@ Contents:
    readme
    installation
    usage
+   cross_library_integrations
    contributing
    authors
    changelog

@@ -5,7 +5,7 @@ separated serializers for read and write operations.
 
 from __future__ import absolute_import, unicode_literals
 
-__version__ = "1.3.0"
+__version__ = "1.4.0"
 
 # pylint: disable=invalid-name
 default_app_config = "drf_rw_serializers.apps.DrfRwSerializersConfig"
