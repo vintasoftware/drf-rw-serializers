@@ -128,10 +128,10 @@ class GenericAPIViewGetSerializerClassTests(BaseTestCase):
             def get_serializer_class(self):
                 return OrderedMealDetailsSerializer
 
-            def get_read_serializer_class(self, default_to_serializer_class: bool = False):
+            def get_read_serializer_class(self):
                 return OrderListSerializer
 
-            def get_write_serializer_class(self, default_to_serializer_class: bool = False):
+            def get_write_serializer_class(self):
                 return OrderCreateSerializer
 
         self.assertEqual(
@@ -169,20 +169,20 @@ class GenericAPIViewGetReadSerializerClassTests(BaseTestCase):
             serializer_class = OrderedMealDetailsSerializer
 
         self.assertEqual(
-            SerializerClassView().get_read_serializer_class(default_to_serializer_class=True),
+            SerializerClassView().get_read_serializer_class(),
             OrderedMealDetailsSerializer,
         )
 
         with mock.patch.object(
             SerializerClassView, "get_serializer_class"
         ) as mock_get_serializer_class:
-            SerializerClassView().get_read_serializer_class(default_to_serializer_class=False)
+            SerializerClassView().get_read_serializer_class()
 
         mock_get_serializer_class.assert_called_once()
 
     def test_get_read_serializer_class_override_provided(self):
         class GetReadSerializerClassView(generics.GenericAPIView):
-            def get_read_serializer_class(self, default_to_serializer_class: bool = False):
+            def get_read_serializer_class(self):
                 return OrderListSerializer
 
         self.assertEqual(
@@ -216,20 +216,20 @@ class GenericAPIViewGetWriteSerializerClassTests(BaseTestCase):
             serializer_class = OrderedMealDetailsSerializer
 
         self.assertEqual(
-            SerializerClassView().get_write_serializer_class(default_to_serializer_class=True),
+            SerializerClassView().get_write_serializer_class(),
             OrderedMealDetailsSerializer,
         )
 
         with mock.patch.object(
             SerializerClassView, "get_serializer_class"
         ) as mock_get_serializer_class:
-            SerializerClassView().get_write_serializer_class(default_to_serializer_class=False)
+            SerializerClassView().get_write_serializer_class()
 
         mock_get_serializer_class.assert_called_once()
 
     def test_get_write_serializer_class_override_provided(self):
         class GetWriteSerializerClassView(generics.GenericAPIView):
-            def get_write_serializer_class(self, default_to_serializer_class: bool = False):
+            def get_write_serializer_class(self):
                 return OrderCreateSerializer
 
         self.assertEqual(
