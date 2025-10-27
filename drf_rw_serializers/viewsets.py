@@ -2,11 +2,11 @@
 
 from rest_framework import mixins, viewsets
 
-from .generics import GenericAPIView
+from .generics import GenericAPIView, _MT_co
 from .mixins import CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin
 
 
-class GenericViewSet(GenericAPIView, viewsets.GenericViewSet):
+class GenericViewSet(GenericAPIView[_MT_co], viewsets.GenericViewSet[_MT_co]):
     pass
 
 
@@ -16,10 +16,10 @@ class ModelViewSet(
     UpdateModelMixin,
     mixins.DestroyModelMixin,
     ListModelMixin,
-    GenericViewSet,
+    GenericViewSet[_MT_co],
 ):
     pass
 
 
-class ReadOnlyModelViewSet(RetrieveModelMixin, ListModelMixin, GenericViewSet):
+class ReadOnlyModelViewSet(RetrieveModelMixin, ListModelMixin, GenericViewSet[_MT_co]):
     pass

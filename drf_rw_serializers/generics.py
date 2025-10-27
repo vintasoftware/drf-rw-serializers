@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
+from typing import Any, TypeVar, Union
+
+from django.db.models import Model
 
 from rest_framework import generics, mixins
+from rest_framework.request import Request
+from rest_framework.response import Response
+from rest_framework.serializers import BaseSerializer
 
 from .mixins import (
     CreateModelMixin,
@@ -9,9 +15,14 @@ from .mixins import (
     UpdateModelMixin,
 )
 
+_MT_co = TypeVar("_MT_co", bound=Model, covariant=True)
 
-class GenericAPIView(generics.GenericAPIView):
-    def get_serializer_class(self):
+
+class GenericAPIView(generics.GenericAPIView[_MT_co]):
+    read_serializer_class: Union[type[BaseSerializer[_MT_co]], None] = None
+    write_serializer_class: Union[type[BaseSerializer[_MT_co]], None] = None
+
+    def get_serializer_class(self) -> type[BaseSerializer[_MT_co]]:
         """
         Return the class to use for the serializer.
         Defaults to using `self.serializer_class`.
@@ -60,9 +71,9 @@ class GenericAPIView(generics.GenericAPIView):
             "`get_read_serializer_class()` method." % self.__class__.__name__
         )
 
-        return self.serializer_class
+        return super().get_serializer_class()
 
-    def get_read_serializer(self, *args, **kwargs):
+    def get_read_serializer(self, *args: Any, **kwargs: Any) -> BaseSerializer[_MT_co]:
         """
         Return the serializer instance that should be used for serializing output.
         """
@@ -70,7 +81,9 @@ class GenericAPIView(generics.GenericAPIView):
         kwargs["context"] = self.get_serializer_context()
         return serializer_class(*args, **kwargs)
 
-    def get_read_serializer_class(self, default_to_serializer_class: bool = False):
+    def get_read_serializer_class(
+        self, default_to_serializer_class: bool = False
+    ) -> type[BaseSerializer[_MT_co]]:
         """
         Return the class to use for the serializer.
         Defaults to using `self.read_serializer_class`.
@@ -80,15 +93,15 @@ class GenericAPIView(generics.GenericAPIView):
 
         (Eg. admins get full serialization, others get basic serialization)
         """
-        if getattr(self, "read_serializer_class", None) is None:
+        if self.read_serializer_class is None:
             if default_to_serializer_class:
-                return self.serializer_class
+                return super().get_serializer_class()
 
             return self.get_serializer_class()
 
         return self.read_serializer_class
 
-    def get_write_serializer(self, *args, **kwargs):
+    def get_write_serializer(self, *args: Any, **kwargs: Any) -> BaseSerializer[_MT_co]:
         """
         Return the serializer instance that should be used for validating
         and deserializing input.
@@ -97,7 +110,9 @@ class GenericAPIView(generics.GenericAPIView):
         kwargs["context"] = self.get_serializer_context()
         return serializer_class(*args, **kwargs)
 
-    def get_write_serializer_class(self, default_to_serializer_class: bool = False):
+    def get_write_serializer_class(
+        self, default_to_serializer_class: bool = False
+    ) -> type[BaseSerializer[_MT_co]]:
         """
         Return the class to use for the serializer.
         Defaults to using `self.write_serializer_class`.
@@ -107,76 +122,76 @@ class GenericAPIView(generics.GenericAPIView):
 
         (Eg. admins can send extra fields, others cannot)
         """
-        if getattr(self, "write_serializer_class", None) is None:
+        if self.write_serializer_class is None:
             if default_to_serializer_class:
-                return self.serializer_class
+                return super().get_serializer_class()
 
             return self.get_serializer_class()
 
         return self.write_serializer_class
 
 
-class CreateAPIView(CreateModelMixin, GenericAPIView):
-    def post(self, request, *args, **kwargs):
+class CreateAPIView(CreateModelMixin, GenericAPIView[_MT_co]):
+    def post(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         return self.create(request, *args, **kwargs)
 
 
-class UpdateAPIView(UpdateModelMixin, GenericAPIView):
-    def put(self, request, *args, **kwargs):
+class UpdateAPIView(UpdateModelMixin, GenericAPIView[_MT_co]):
+    def put(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         return self.update(request, *args, **kwargs)
 
-    def patch(self, request, *args, **kwargs):
+    def patch(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         return self.partial_update(request, *args, **kwargs)
 
 
-class ListAPIView(ListModelMixin, GenericAPIView):
-    def get(self, request, *args, **kwargs):
+class ListAPIView(ListModelMixin, GenericAPIView[_MT_co]):
+    def get(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         return self.list(request, *args, **kwargs)
 
 
-class RetrieveAPIView(RetrieveModelMixin, GenericAPIView):
-    def get(self, request, *args, **kwargs):
+class RetrieveAPIView(RetrieveModelMixin, GenericAPIView[_MT_co]):
+    def get(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         return self.retrieve(request, *args, **kwargs)
 
 
-class ListCreateAPIView(ListModelMixin, CreateModelMixin, GenericAPIView):
-    def get(self, request, *args, **kwargs):
+class ListCreateAPIView(ListModelMixin, CreateModelMixin, GenericAPIView[_MT_co]):
+    def get(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         return self.list(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         return self.create(request, *args, **kwargs)
 
 
-class RetrieveDestroyAPIView(RetrieveModelMixin, mixins.DestroyModelMixin, GenericAPIView):
-    def get(self, request, *args, **kwargs):
+class RetrieveDestroyAPIView(RetrieveModelMixin, mixins.DestroyModelMixin, GenericAPIView[_MT_co]):
+    def get(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         return self.retrieve(request, *args, **kwargs)
 
-    def delete(self, request, *args, **kwargs):
+    def delete(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         return self.destroy(request, *args, **kwargs)
 
 
-class RetrieveUpdateAPIView(RetrieveModelMixin, UpdateModelMixin, GenericAPIView):
-    def get(self, request, *args, **kwargs):
+class RetrieveUpdateAPIView(RetrieveModelMixin, UpdateModelMixin, GenericAPIView[_MT_co]):
+    def get(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         return self.retrieve(request, *args, **kwargs)
 
-    def put(self, request, *args, **kwargs):
+    def put(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         return self.update(request, *args, **kwargs)
 
-    def patch(self, request, *args, **kwargs):
+    def patch(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         return self.partial_update(request, *args, **kwargs)
 
 
 class RetrieveUpdateDestroyAPIView(
-    RetrieveModelMixin, UpdateModelMixin, mixins.DestroyModelMixin, GenericAPIView
+    RetrieveModelMixin, UpdateModelMixin, mixins.DestroyModelMixin, GenericAPIView[_MT_co]
 ):
-    def get(self, request, *args, **kwargs):
+    def get(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         return self.retrieve(request, *args, **kwargs)
 
-    def put(self, request, *args, **kwargs):
+    def put(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         return self.update(request, *args, **kwargs)
 
-    def patch(self, request, *args, **kwargs):
+    def patch(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         return self.partial_update(request, *args, **kwargs)
 
-    def delete(self, request, *args, **kwargs):
+    def delete(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         return self.destroy(request, *args, **kwargs)

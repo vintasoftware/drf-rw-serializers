@@ -1,16 +1,23 @@
 # -*- coding: utf-8 -*-
+# mypy: disable-error-code="attr-defined"
+from typing import Any
 
 from rest_framework import mixins, status
+from rest_framework.request import Request
 from rest_framework.response import Response
 
 
 class UpdateModelMixin(mixins.UpdateModelMixin):
-    def update(self, request, *args, **kwargs):
+    def update(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         partial = kwargs.pop("partial", False)
         instance = self.get_object()
-        write_serializer = self.get_write_serializer(instance, data=request.data, partial=partial)
+        write_serializer = self.get_write_serializer(
+            instance,
+            data=request.data,
+            partial=partial,
+        )
         write_serializer.is_valid(raise_exception=True)
-        self.perform_update(write_serializer)
+        self.perform_update(write_serializer)  # type: ignore[misc]
 
         # pylint: disable=protected-access
         if getattr(instance, "_prefetched_objects_cache", None) is not None:
@@ -24,19 +31,23 @@ class UpdateModelMixin(mixins.UpdateModelMixin):
 
 
 class CreateModelMixin(mixins.CreateModelMixin):
-    def create(self, request, *args, **kwargs):
-        write_serializer = self.get_write_serializer(data=request.data)
+    def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
+        write_serializer = self.get_write_serializer(
+            data=request.data,
+        )
         write_serializer.is_valid(raise_exception=True)
-        self.perform_create(write_serializer)
+        self.perform_create(write_serializer)  # type: ignore[misc]
 
-        read_serializer = self.get_read_serializer(write_serializer.instance)
+        read_serializer = self.get_read_serializer(
+            write_serializer.instance,
+        )
         headers = self.get_success_headers(read_serializer.data)
 
         return Response(read_serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 class ListModelMixin(mixins.ListModelMixin):
-    def list(self, request, *args, **kwargs):
+    def list(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         queryset = self.filter_queryset(self.get_queryset())
 
         page = self.paginate_queryset(queryset)
@@ -49,7 +60,7 @@ class ListModelMixin(mixins.ListModelMixin):
 
 
 class RetrieveModelMixin(mixins.RetrieveModelMixin):
-    def retrieve(self, request, *args, **kwargs):
+    def retrieve(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         instance = self.get_object()
         serializer = self.get_read_serializer(instance)
         return Response(serializer.data)

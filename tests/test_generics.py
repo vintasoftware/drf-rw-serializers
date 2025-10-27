@@ -115,7 +115,8 @@ class GenericAPIViewGetSerializerClassTests(BaseTestCase):
 
         # Return default serializer_class
         self.RWSerializerView.request = mock.Mock(method=non_read_write_method)
-        self.assertIsNone(self.RWSerializerView().get_serializer_class())
+        with self.assertRaises(AssertionError):
+            self.RWSerializerView().get_serializer_class()
 
         # Return default serializer_class even if read/write serializer classes are provided
         self.FullSerializerView.request = mock.Mock(method=non_read_write_method)

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from django.urls import path, re_path
+from typing import Union
+
+from django.urls import URLPattern, URLResolver, path, re_path
 
 from rest_framework.urlpatterns import format_suffix_patterns
 
@@ -19,7 +21,7 @@ from .views import (
     OrderViewset,
 )
 
-urlpatterns = [
+urlpatterns: list[Union[URLResolver, URLPattern]] = [
     path(
         "orders-list-without-read-serializer/",
         OrderListWithoutReadSerializerEndpoint.as_view(),

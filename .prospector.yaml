@@ -42,6 +42,11 @@ pylint:
 dodgy:
   run: true
 
+mypy:
+  run: true
+  options:
+    strict: false
+
 ignore-paths:
   - node_modules
   - venv
